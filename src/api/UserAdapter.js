@@ -18,7 +18,7 @@ class UserAdapter {
             },
             body: JSON.stringify(userObj)
         }
-        return fetch('http://localhost:4000/api/v1/users', postConfig).then(res => res.json())
+        return fetch('http://localhost:4000/api/v1/auth/register', postConfig).then(res => res.json())
     }
 
     static deleteUser(userId) {
