@@ -1,14 +1,18 @@
+import { getGenres } from '../Actions/index'
+
+
 const initialState = {
-    genres: []
+    genres: [],
+    selectedGenres: []
 }
 
-const genreReducer = (state=initialState, action) => {
+const quizReducer = (state=initialState, action) => {
     switch(action.type){
-        case 'GET-GENRES':
+        case 'get-all-genres':
             return {...state, genres: action.payload}
         default:
             return state
     }
 }
 
-export default genreReducer
+export default quizReducer
