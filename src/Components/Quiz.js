@@ -42,6 +42,11 @@ class Quiz extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.selectedGenres)
+        // i need to post the array as a key in the body of my post request
+        // on the frontend the post can be done with genreAdapter
+        
+        // on the backend the route needs to be to a listen notes controller - at which point a method will be triggered to call best podcasts of that genre, and return a sample, save the stream data, and return that
+
     }
 
     genreMap = () => {

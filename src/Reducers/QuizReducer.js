@@ -1,5 +1,3 @@
-import { getGenres } from '../Actions/index'
-
 
 const initialState = {
     genres: []
