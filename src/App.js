@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import UserLogin from './Components/UserLogin';
+import Quiz from './Components/Quiz';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
           This will be a podcast curation App
         </p>
         <UserLogin />
+        <Quiz />
       </div>
     );
   }
