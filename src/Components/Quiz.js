@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import GenreAdapter from '../api/GenreAdapter';
 import { connect } from 'react-redux';
 import { getGenres } from '../Actions/index'
+
 
 class Quiz extends Component {
 
@@ -17,7 +18,12 @@ class Quiz extends Component {
 
     genreMap = () => {
         return this.props.genres.map(genreObj => {
-            return (<p>{genreObj.name}</p>)
+            return (
+                <li key={genreObj.id}>
+                    <input type="checkbox" id={genreObj.name} value={genreObj.api_id}/>
+                    <label htmlFor={genreObj.name}>{genreObj.name}</label>
+                </li>
+            )
         } )
     }
     
@@ -25,9 +31,14 @@ class Quiz extends Component {
     
     render() {
         return (
-            <div>
+            <div className='card'>
                 <h1>What do you feel like getting</h1>
-                {this.genreMap()}
+                <form>
+                    <ul>
+                        {this.genreMap()}
+                    </ul>
+                    <input type="submit" value="PODCAST ME UP BABY"/>
+                </form> 
 
             </div>
         );
