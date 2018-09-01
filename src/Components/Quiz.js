@@ -37,9 +37,11 @@ class Quiz extends Component {
                 selectedGenres: newArr
             })
         }
-        // const target = event.target
-        // const value = target.type === 'checkbox' ? target.checked: target.value
-        // const name = target.name
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        console.log(this.state.selectedGenres)
     }
 
     genreMap = () => {
@@ -59,7 +61,7 @@ class Quiz extends Component {
         return (
             <div className='card'>
                 <h1>What do you feel like getting</h1>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <ul>
                         {this.genreMap()}
                     </ul>
