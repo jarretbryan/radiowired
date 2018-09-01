@@ -6,7 +6,10 @@ import { getGenres } from '../Actions/index'
 
 class Quiz extends Component {
 
-    // BELOW TO BE ABSTRACTED INTO ADAPTER
+    state = {
+        selectedGenres:[],
+        defaultSelected: false
+    }
 
     componentDidMount(){
         this.getGenreStrings()
@@ -16,11 +19,34 @@ class Quiz extends Component {
         GenreAdapter.index().then(res => this.props.getGenreArr(res))
     }
 
+    handleSelect = (event) => {
+        console.log(event.target.value)
+        console.log(event.target.checked)
+
+        if (event.target.checked === true){
+            // event.target.checked = true
+            let newArr = [...this.state.selectedGenres]
+            newArr.push(event.target.value)
+            this.setState({
+                selectedGenres: newArr
+            })
+        } else if (event.target.checked === false){
+            // event.target.checked = false
+            let newArr = this.state.selectedGenres.filter(element => element !== event.target.value)
+            this.setState({
+                selectedGenres: newArr
+            })
+        }
+        // const target = event.target
+        // const value = target.type === 'checkbox' ? target.checked: target.value
+        // const name = target.name
+    }
+
     genreMap = () => {
         return this.props.genres.map(genreObj => {
             return (
                 <li key={genreObj.id}>
-                    <input type="checkbox" id={genreObj.name} value={genreObj.api_id}/>
+                    <input onChange={this.handleSelect} checked={this.props.defaultSelected} type="checkbox" id={genreObj.name} value={genreObj.api_id}/>
                     <label htmlFor={genreObj.name}>{genreObj.name}</label>
                 </li>
             )

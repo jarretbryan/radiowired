@@ -2,8 +2,7 @@ import { getGenres } from '../Actions/index'
 
 
 const initialState = {
-    genres: [],
-    selectedGenres: []
+    genres: []
 }
 
 const quizReducer = (state=initialState, action) => {
