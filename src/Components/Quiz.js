@@ -45,7 +45,7 @@ class Quiz extends Component {
         // i need to post the array as a key in the body of my post request
         // on the frontend the post can be done with genreAdapter
         
-        // on the backend the route needs to be to a listen notes controller - at which point a method will be triggered to call best podcasts of that genre, and return a sample, save the stream data, and return that
+        // on the backend the route needs to be to a listen notes controller - at which point a method will be triggered to call best podcasts of that genre, and return a sample, save the stream data, and return that - this route will take in the array of numbers of genres, and this.props.user.id to know which user_id to make the playlist for
 
     }
 
@@ -78,8 +78,9 @@ class Quiz extends Component {
     }
 }
 
-const mapStateToProps = ({quizReducer:{genres}}) => ({
-    genres
+const mapStateToProps = ({quizReducer:{genres}, usersReducer:{user}}) => ({
+    genres,
+    user
 })
 
 const mapDispatchToProps = (dispatch) => {

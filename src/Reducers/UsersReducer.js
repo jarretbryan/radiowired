@@ -42,7 +42,7 @@ const dummyState = {
 }
 
 
-const usersReducer = (state=dummyState, action) => {
+const usersReducer = (state=initialState, action) => {
     switch(action.type){
         case 'set-active-user':
             return  { ...state, user: action.payload, loggedIn: true}
