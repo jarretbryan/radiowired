@@ -17,10 +17,10 @@ class App extends Component {
         <p className="App-intro">
           This will be a podcast curation App
         </p>
-        {/* <UserLogin /> */}
-        <UserRegister />
-        <Quiz />
-        <PlaylistContainer />
+        <UserLogin />
+        {/* <UserRegister /> */}
+        {/* <Quiz /> */}
+        {/* <PlaylistContainer /> */}
       </div>
     );
   }
