@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import UserLogin from './Components/UserLogin';
 import Quiz from './Components/Quiz';
+import PlaylistContainer from './Components/PlaylistContainer';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         </p>
         <UserLogin />
         <Quiz />
+        <PlaylistContainer />
       </div>
     );
   }
