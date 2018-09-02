@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import './App.css';
-import UserLogin from './Components/UserLogin';
+import UserRegister from './Components/UserRegister';
 import Quiz from './Components/Quiz';
 import PlaylistContainer from './Components/PlaylistContainer';
+import UserLogin from './Components/UserLogin';
 
 class App extends Component {
   render() {
@@ -16,7 +17,8 @@ class App extends Component {
         <p className="App-intro">
           This will be a podcast curation App
         </p>
-        <UserLogin />
+        {/* <UserLogin /> */}
+        <UserRegister />
         <Quiz />
         <PlaylistContainer />
       </div>

@@ -78,9 +78,8 @@ class Quiz extends Component {
     }
 }
 
-const mapStateToProps = ({quizReducer:{genres, selectedGenres}}) => ({
-    genres,
-    selectedGenres
+const mapStateToProps = ({quizReducer:{genres}}) => ({
+    genres
 })
 
 const mapDispatchToProps = (dispatch) => {
