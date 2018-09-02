@@ -1,7 +1,8 @@
-import React, { Component} from 'react';
+import React, { Component, Fragment} from 'react';
 import GenreAdapter from '../api/GenreAdapter';
 import { connect } from 'react-redux';
 import { getGenres } from '../Actions/index'
+import { NavLink, Redirect } from 'react-router-dom' 
 
 
 class Quiz extends Component {
@@ -64,6 +65,9 @@ class Quiz extends Component {
     
     render() {
         return (
+            <Fragment>
+
+                <NavLink to='/profile'>See your profile</NavLink>
             <div className='card'>
                 <h1>What do you feel like getting</h1>
                 <form onSubmit={this.handleSubmit}>
@@ -72,8 +76,8 @@ class Quiz extends Component {
                     </ul>
                     <input type="submit" value="PODCAST ME UP BABY"/>
                 </form> 
-
             </div>
+            </Fragment>
         );
     }
 }
