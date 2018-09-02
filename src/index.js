@@ -6,13 +6,14 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter as Router } from 'react-router-dom' 
 import usersReducer from './Reducers/UsersReducer';
 import quizReducer from './Reducers/QuizReducer';
 
 const coreReducer = combineReducers({usersReducer, quizReducer })
 
-const store = createStore(coreReducer, applyMiddleware(thunk))
+const store = createStore(coreReducer, composeWithDevTools( applyMiddleware(thunk)))
 
 
 console.log(store.getState())
