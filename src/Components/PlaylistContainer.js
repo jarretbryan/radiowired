@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Playlist from './Playlist';
+import { connect } from 'react-redux';
+
 
 // for the sake of the first draft, where we don't have a user in store, i will need to fake seed data somewhere so we know which user to render.
 
@@ -9,27 +11,9 @@ import Playlist from './Playlist';
 class PlaylistContainer extends Component {
 
     // temporary, just to build the component
-    state = {
-        playlists: [
-            {
-                "id": 1,
-                "title": "Just for Laughs",
-                "description": "I just want to Laugh!",
-                "genre": "Comedy",
-                "user_id": 1
-            },
-            {
-                "id": 2,
-                "title": "Stock Options",
-                "description": "On my Warren Buffet",
-                "genre": "Investing",
-                "user_id": 1
-            }
-        ]
-    }
 
     mapPlaylists = () => {
-        return this.state.playlists.map(
+        return this.props.user.playlists.map(
             playlist => <Playlist key={playlist.id} playlist={playlist} /> 
         )
     }
@@ -43,5 +27,9 @@ class PlaylistContainer extends Component {
     }
 }
 
-export default PlaylistContainer;
+const mapStateToProps = ({ usersReducer: { user } }) => ({
+    user
+})
+
+export default connect (mapStateToProps)(PlaylistContainer);
 

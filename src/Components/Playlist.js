@@ -28,7 +28,7 @@ class Playlist extends Component {
             <div>
                 <h1>{this.props.playlist.title}</h1>
                 <p>{this.props.playlist.description}</p>
-                <h1>{this.props.playlist.id}</h1>
+                {/* <h1>{this.props.playlist.id}</h1> */}
                 {this.mapSubs()}
             </div >
         );
