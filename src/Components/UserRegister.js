@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import UserAdapter from '../api/UserAdapter';
+import { NavLink } from 'react-router-dom' 
+
 
 class UserRegister extends Component {
 
@@ -30,6 +32,8 @@ class UserRegister extends Component {
     
     render() {
         return (
+            <Fragment>
+
             <form id="registerForm" onSubmit={this.postUser}>
                 <label htmlFor="email-input">Enter Your Email Address!</label> <br/>
                 <input type="text" id="email-input" name="email" value={this.state.email} placeholder="example@example.com"  onChange={this.handleChange} required /> <br />
@@ -41,6 +45,10 @@ class UserRegister extends Component {
                 <input type="text" id="profile-image-input" name="profile_image" value={this.state.profile_image} placeholder="this is optional!" onChange={this.handleChange}  /><br />
                 <input type="submit" />  <br />              
             </form>
+                <p>Already have an account?</p>
+                <NavLink to='login'>Login here!</NavLink>
+
+            </Fragment>
         );
     }
 }

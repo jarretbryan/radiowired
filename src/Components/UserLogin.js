@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
-import {loginUser} from '../Actions/index';
+import { loginUser } from '../Actions/index';
+import { NavLink } from 'react-router-dom' 
+
 
 class UserLogin extends Component {
 
@@ -25,6 +27,8 @@ class UserLogin extends Component {
 
     render() {
         return (
+            <Fragment>
+
             <form id="registerForm" onSubmit={this.handleSubmit}>
                 <label htmlFor="email-input">Login with your email!</label> <br />
                 <input type="text" id="email-input" name="email" value={this.state.email} placeholder="example@example.com" onChange={this.handleChange} required /> <br />
@@ -32,6 +36,11 @@ class UserLogin extends Component {
                 <input type="password" id="password-input" name="password" value={this.state.password} placeholder="enter a secure password" onChange={this.handleChange} required /><br />
                 <input type="submit" />  <br />
             </form>
+
+            <p>Don't have a login?</p>
+            <NavLink to='register'>Sign Up Here</NavLink>
+
+            </Fragment>
         );
     }
 }

@@ -14,6 +14,7 @@ const dummyState = {
         "id": 1,
         "email": "test1@test.com",
         "username": "TestMan",
+        "profile_image": "http://www.maximumfun.org/images/jesse500.jpg",
         "password_digest": "$2a$10$fnlSC3RUwui.j82P9JOCPOOFqa3rU1dquS7Y0dCazViWYI27iYpYe",
         "created_at": "2018-08-31T15:31:32.721Z",
         "updated_at": "2018-08-31T15:31:32.721Z",
