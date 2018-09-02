@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PlaylistContainer from './PlaylistContainer';
+import Player from './Player';
 
 
 class Profile extends Component {
@@ -13,6 +14,7 @@ class Profile extends Component {
                     
                 </header>
                 <p>hey let's listen to some podcasts this is your profile!</p>
+                <Player />
                 <PlaylistContainer />
                 
             </div>
