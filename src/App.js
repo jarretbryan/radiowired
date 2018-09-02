@@ -1,27 +1,31 @@
-import React, { Component } from 'react';
-
+import React, { Component, Fragment } from 'react';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import './App.css';
 import UserRegister from './Components/UserRegister';
 import Quiz from './Components/Quiz';
 import PlaylistContainer from './Components/PlaylistContainer';
 import UserLogin from './Components/UserLogin';
+import Navbar from './Components/Navbar';
 
 class App extends Component {
   render() {
     return (
+    
       <div className="App">
-        <header className="App-header">
-          <img src="http://icons.iconarchive.com/icons/kyo-tux/phuzion/256/Misc-RSS-icon.png" className="App-logo" alt="logo" />
-          <h1 className="App-title">RadioWired</h1>
-        </header>
-        <p className="App-intro">
-          This will be a podcast curation App
-        </p>
-        <UserLogin />
-        {/* <UserRegister /> */}
-        {/* <Quiz /> */}
-        {/* <PlaylistContainer /> */}
+
+          <Navbar />
+
+          
+          <Switch>
+            <Route exact path="/register" component={UserRegister} />
+
+          
+            <Route exact path="/" component={UserLogin} />
+            <Route exact path="/quiz" component={Quiz} />
+            {/* <PlaylistContainer /> */}
+          </Switch>
       </div>
+      
     );
   }
 }

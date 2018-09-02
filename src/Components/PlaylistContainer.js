@@ -13,7 +13,9 @@ class PlaylistContainer extends Component {
     // temporary, just to build the component
 
     mapPlaylists = () => {
-        return this.props.user.playlists.map(
+        let userPlaylistArr = this.props.user.playlists
+        console.log(userPlaylistArr)
+        return userPlaylistArr.map(
             playlist => <Playlist key={playlist.id} playlist={playlist} /> 
         )
     }
