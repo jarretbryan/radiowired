@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PlaylistContainer from './PlaylistContainer';
 import Player from './Player';
-import { Redirect} from 'react-router-dom'
+import { Redirect, NavLink } from 'react-router-dom'
 
 
 class Profile extends Component {
@@ -19,6 +19,9 @@ class Profile extends Component {
 
                     </header>
                     <p>hey let's listen to some podcasts this is your profile!</p>
+                    
+                    <NavLink to="/quiz">Make a new Playlist!</NavLink>
+
                     <Player />
                     <PlaylistContainer />
 
