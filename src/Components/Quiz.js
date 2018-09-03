@@ -9,7 +9,8 @@ class Quiz extends Component {
 
     state = {
         selectedGenres:[],
-        defaultSelected: false
+        defaultSelected: false,
+        submitted: false
     }
 
     componentDidMount(){
@@ -43,6 +44,17 @@ class Quiz extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.selectedGenres)
+
+        this.setState({
+            submitted:true
+        })
+
+        let submitObj = {
+            selectedGenres: this.state.selectedGenres,
+            user_id: this.props.user.id,
+            list_length: 2
+        }
+        GenreAdapter.postGenre(submitObj)   
         // i need to post the array as a key in the body of my post request
         // on the frontend the post can be done with genreAdapter
         
@@ -60,6 +72,23 @@ class Quiz extends Component {
             )
         } )
     }
+
+    showQuizOptions = () => {
+        if (this.state.submitted === true){
+            return <Redirect to='/profile' />
+        } else {
+            return (<div className='card'>
+                <h1>What do you feel like getting</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <ul>
+                        {this.genreMap()}
+                    </ul>
+                    <input type="submit" value="PODCAST ME UP BABY" />
+                </form>
+            </div>)
+        }
+    }
+
     
 
     
@@ -68,15 +97,7 @@ class Quiz extends Component {
             <Fragment>
 
                 <NavLink to='/profile'>See your profile</NavLink>
-            <div className='card'>
-                <h1>What do you feel like getting</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <ul>
-                        {this.genreMap()}
-                    </ul>
-                    <input type="submit" value="PODCAST ME UP BABY"/>
-                </form> 
-            </div>
+                {this.showQuizOptions()}
             </Fragment>
         );
     }
