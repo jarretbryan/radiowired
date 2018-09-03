@@ -10,7 +10,7 @@ class Quiz extends Component {
     state = {
         selectedGenres:[],
         defaultSelected: false,
-        submitted: false
+        redirect: false
     }
 
     componentDidMount(){
@@ -41,22 +41,30 @@ class Quiz extends Component {
         }
     }
 
+    prepRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect === true) {
+            return <Redirect to="profile" />
+        }
+    }
+
     handleSubmit = (event) => {
         event.preventDefault()
         console.log(this.state.selectedGenres)
-
-        this.setState({
-            submitted:true
-        })
 
         let submitObj = {
             selectedGenres: this.state.selectedGenres,
             user_id: this.props.user.id,
             list_length: 2
         }
-        // GenreAdapter.postGenre(submitObj) 
+        GenreAdapter.postGenre(submitObj).then(this.prepRedirect()) 
         // this.props.history.push('/profile')
-        return <Redirect to='/profile' />
+        
         
         // i need to post the array as a key in the body of my post request
         // on the frontend the post can be done with genreAdapter
@@ -75,32 +83,22 @@ class Quiz extends Component {
             )
         } )
     }
-
-    showQuizOptions = () => {
-        if (this.state.submitted === true){
-            return <Redirect to='/profile' />
-        } else {
-            return (<div className='card'>
-                <h1>What do you feel like getting</h1>
-                <form onSubmit={this.handleSubmit}>
-                    <ul>
-                        {this.genreMap()}
-                    </ul>
-                    <input type="submit" value="PODCAST ME UP BABY" />
-                </form>
-            </div>)
-        }
-    }
-
-    
-
-    
+ 
     render() {
         return (
             <Fragment>
 
-                <NavLink to='/profile'>See your profile</NavLink>
-                {this.showQuizOptions()}
+                <NavLink to='/profile'>Back to your profile!</NavLink>
+                {this.renderRedirect()}
+                <div className='card'>
+                    <h1>What do you feel like getting</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <ul>
+                            {this.genreMap()}
+                        </ul>
+                        <input type="submit" value="PODCAST ME UP BABY" />
+                    </form>
+                </div>
             </Fragment>
         );
     }

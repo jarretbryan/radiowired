@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import { NavLink, Redirect } from 'react-router-dom' 
+import { connect } from 'react-redux';
+import StreamAdapter from '../api/StreamAdapter';
 
 class PlaylistForm extends Component {
     
     state = {
         title: '',
         description: '',
-        genre: ''
+        genre: '',
+        redirect: false
     }
 
     handleChange = (event) => {
@@ -14,13 +17,37 @@ class PlaylistForm extends Component {
             [event.target.name]: event.target.value
         })
     }
+
+    prepRedirect = () => {
+        this.setState({
+            redirect:true
+        })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        const submitObj = {
+            title: this.state.title,
+            description: this.state.description,
+            genre: this.state.genre,
+            user_id: this.props.user.id
+        }
+        StreamAdapter.post_playlist(submitObj)
+        this.prepRedirect()
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect===true){
+            return <Redirect to="quiz" />
+        }
+    }
     
  
     render() {
         return (
             <Fragment>
-
-                <form id="playlistForm" >
+                {this.renderRedirect()}
+                <form id="playlistForm" onSubmit={this.handleSubmit}>
                     <label htmlFor="title-input">Name Your Playlist!</label> <br />
                     <input type="text" id="title-input" name="title" value={this.state.title} placeholder="e.g. 'stuff i should learn' " onChange={this.handleChange} required /> <br />
                     <label htmlFor="desc-input">Write a description for your playlist!</label><br />
@@ -41,4 +68,8 @@ class PlaylistForm extends Component {
     }
 }
 
-export default PlaylistForm;
+const mapStateToProps = ({ usersReducer: { user } }) => ({
+    user
+})
+
+export default connect(mapStateToProps) (PlaylistForm);

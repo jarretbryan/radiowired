@@ -10,4 +10,16 @@ export default class StreamAdapter {
         }).then(res => res.json())
     }
 
+    static post_playlist(postObj) {
+        return fetch(`http://localhost:4000/api/v1/playlists`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`
+            },
+            body: JSON.stringify(postObj)
+        }).then(res => res.json())
+    }
+
 }
