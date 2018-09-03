@@ -60,9 +60,6 @@ class PlaylistForm extends Component {
                     <input type="submit" />  <br />
                 </form>
 
-                <p>Don't have a login?</p>
-                <NavLink to='register'>Sign Up Here</NavLink>
-
             </Fragment>
         );
     }
