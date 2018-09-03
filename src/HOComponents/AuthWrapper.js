@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 // import * as actions from '../actions'
 import  * as actions from '../Actions/index';
+import radio from '../gifs/Radio-1.2s-200px.gif'; 
+
 
 
 const AuthWrapper = WrappedComponent => {
@@ -16,7 +18,7 @@ const AuthWrapper = WrappedComponent => {
             if (localStorage.getItem('jwt') && this.props.loggedIn) {
                 return <WrappedComponent />
             } else if (localStorage.getItem('jwt') && this.props.checkingAuth) {
-                return <img src="../../public/Radio-1.2s-200px.gif" />
+                return <img src={radio} />
             } else {
                 return <Redirect to="/" />
             }

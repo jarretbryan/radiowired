@@ -47,15 +47,15 @@ const usersReducer = (state=initialState, action) => {
         case 'set-active-user':
             return  { ...state, user: action.payload, loggedIn: true}
         case 'authenticating':
-            return { ...state, authenticatingUser: true }
+            return { ...state, checkingAuth: true }
         case 'authenticated':
-            return { ...state, authenticatingUser: false }
+            return { ...state, checkingAuth: false }
         case 'login-error':
             return {
                 ...state,
-                failedLogin: true,
+                loggedIn: false,
                 error: action.payload,
-                authenticatingUser: false
+                checkingAuth: false
             }
         default:
             return state
