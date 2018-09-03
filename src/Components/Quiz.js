@@ -54,7 +54,10 @@ class Quiz extends Component {
             user_id: this.props.user.id,
             list_length: 2
         }
-        GenreAdapter.postGenre(submitObj)   
+        // GenreAdapter.postGenre(submitObj) 
+        // this.props.history.push('/profile')
+        return <Redirect to='/profile' />
+        
         // i need to post the array as a key in the body of my post request
         // on the frontend the post can be done with genreAdapter
         
