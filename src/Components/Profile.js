@@ -3,9 +3,39 @@ import { connect } from 'react-redux';
 import PlaylistContainer from './PlaylistContainer';
 import Player from './Player';
 import { Redirect, NavLink } from 'react-router-dom'
+import PlaylistForm from './PlaylistForm';
 
 
 class Profile extends Component {
+
+    state = {
+        makingPlaylist: false
+    }
+
+    showNewPlaylistForm = () => {
+        if (this.state.makingPlaylist === true) {
+            return (
+                <Fragment>
+                    <PlaylistForm />
+                    <button onClick={this.hidePlaylistForm}>X</button>
+                </Fragment>
+            )
+        } else {
+            return null
+        }
+    }
+
+    makeNewPlaylist = () => {
+        this.setState({
+            makingPlaylist: true
+        })
+    }
+
+    hidePlaylistForm = () => {
+        this.setState({
+            makingPlaylist: false
+        })
+    }
     
     showProfile = () => {
         if (!this.props.loggedIn){
@@ -20,9 +50,10 @@ class Profile extends Component {
                     </header>
                     <p>hey let's listen to some podcasts this is your profile!</p>
                     
-                    <NavLink to="/quiz">Make a new Playlist!</NavLink>
+                    <button onClick={this.makeNewPlaylist}>Make a new Playlist!</button>
 
                     <Player />
+                    {this.showNewPlaylistForm()}
                     <PlaylistContainer />
 
                 </div>
