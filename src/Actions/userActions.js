@@ -9,10 +9,24 @@ export const loginUser = (email, password) => {
             },
             body: JSON.stringify({email, password})
         })
-            .then(response => response.json())
+            .then(response => {
+                console.log(response)
+                return response.json()
+            })
+            .then(response => {
+                if (response.message){
+                    throw new Error('failed-login')
+                } else {
+                    return response
+                }            
+            })
             .then(({ user, jwt }) => {
                 localStorage.setItem('jwt', jwt)
                 dispatch(setCurrentUser(user))
+            }).catch(error => {
+                console.log(error)
+                localStorage.removeItem('')
+                dispatch(badLogin(error))
             })
     }
 }
@@ -38,3 +52,9 @@ export const setCurrentUser = userData => ({
 
 // tell our app we're currently fetching
 export const authenticatingUser = () => ({ type: 'authenticated' })
+
+export const badLogin = error => {
+    return { type: 'login-error', payload: error }
+}
+    
+    

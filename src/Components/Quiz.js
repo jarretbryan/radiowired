@@ -83,6 +83,27 @@ class Quiz extends Component {
             )
         } )
     }
+
+    // showQuiz = () => {
+    //     if (!this.props.loggedIn) {
+    //         return <Redirect to="/" />
+    //     } else {
+    //         return (<Fragment>
+
+    //             <NavLink to='/profile'>Back to your profile!</NavLink>
+    //             {this.renderRedirect()}
+    //             <div className='card'>
+    //                 <h1>What do you feel like getting</h1>
+    //                 <form onSubmit={this.handleSubmit}>
+    //                     <ul>
+    //                         {this.genreMap()}
+    //                     </ul>
+    //                     <input type="submit" value="PODCAST ME UP BABY" />
+    //                 </form>
+    //             </div>
+    //         </Fragment>) 
+    //     }
+    // }
  
     render() {
         return (

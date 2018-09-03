@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PlaylistContainer from './PlaylistContainer';
 import Player from './Player';
-import { Redirect, NavLink } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import PlaylistForm from './PlaylistForm';
+import AuthWrapper from '../HOComponents/AuthWrapper';
 
 
 class Profile extends Component {
@@ -75,4 +76,4 @@ const mapStateToProps = ({ usersReducer: { user, loggedIn } }) => ({
     loggedIn
 })
 
-export default connect(mapStateToProps)(Profile);
+export default AuthWrapper(connect(mapStateToProps)(Profile));

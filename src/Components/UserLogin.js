@@ -27,12 +27,22 @@ class UserLogin extends Component {
         // }
     }
 
+    showError = () => {
+        const redText = {
+            color:'red'
+        }
+        if (!!this.props.error){
+            return <h4 style={redText}>Incorrect login credentials</h4>
+        }
+    }
+
 
     showLogin = () => {
         if (!!this.props.loggedIn){
             return <Redirect to='/profile' />
         } else {
             return (<Fragment>
+                {this.showError()}
 
                 <form id="registerForm" onSubmit={this.handleSubmit}>
                     <label htmlFor="email-input">Login with your email!</label> <br />
