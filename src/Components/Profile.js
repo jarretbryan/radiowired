@@ -37,6 +37,14 @@ class Profile extends Component {
             makingPlaylist: false
         })
     }
+
+    showAudioPlayer = () => {
+        if (this.props.visiblePlayer === true){
+            return <Player />
+        } else {
+            return null
+        }
+    }
     
     showProfile = () => {
         if (!localStorage.loggedIn){
@@ -55,7 +63,7 @@ class Profile extends Component {
                     
                     <button onClick={this.makeNewPlaylist}>Make a new Playlist!</button>
 
-                    <Player />
+                    {this.showAudioPlayer()}
                     {this.showNewPlaylistForm()}
                     <PlaylistContainer />
 
@@ -74,9 +82,10 @@ class Profile extends Component {
     }
 }
 
-const mapStateToProps = ({ usersReducer: { user, loggedIn } }) => ({
+const mapStateToProps = ({ usersReducer: { user, loggedIn }, playerReducer:{ visiblePlayer } }) => ({
     user,
-    loggedIn
+    loggedIn,
+    visiblePlayer
 })
 
 export default AuthWrapper(connect(mapStateToProps)(Profile));

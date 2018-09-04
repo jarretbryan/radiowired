@@ -10,8 +10,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter as Router } from 'react-router-dom' 
 import usersReducer from './Reducers/UsersReducer';
 import quizReducer from './Reducers/QuizReducer';
+import playerReducer from './Reducers/PlayerReducer';
 
-const coreReducer = combineReducers({usersReducer, quizReducer })
+const coreReducer = combineReducers({usersReducer, quizReducer, playerReducer })
 
 const store = createStore(coreReducer, composeWithDevTools( applyMiddleware(thunk)))
 
