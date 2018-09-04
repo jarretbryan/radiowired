@@ -6,7 +6,6 @@ import StreamAdapter from '../api/StreamAdapter';
 class Playlist extends Component {
 
     state = {
-        playlistURL: 'http://localhost:4000/api/v1/playlists/',
         subscriptions: []
     }
 

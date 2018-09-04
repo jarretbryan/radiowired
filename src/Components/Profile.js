@@ -41,7 +41,7 @@ class Profile extends Component {
     showProfile = () => {
         if (!localStorage.loggedIn){
             console.log(this.props.user)
-            debugger;
+            // debugger;
             return <Redirect to="/" />
         } else {
             return (

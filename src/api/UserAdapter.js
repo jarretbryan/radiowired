@@ -9,6 +9,17 @@ class UserAdapter {
     //     return fetch(`http://localhost:4000/api/v1/users/${userId}`).then(res => res.json())
     // }
 
+    static getUser(num){
+        let postConfig = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`
+            }
+        }
+        return fetch(`http://localhost:4000/api/v1/users/${num}`, postConfig).then(res => res.json())
+    }
+
     static postUser(userObj) {
 
         let postConfig = {
