@@ -70,11 +70,17 @@ class Quiz extends Component {
             list_length: parseInt(this.state.listLength)
         }
         GenreAdapter.postGenre(submitObj)
-        .then(res=>{
-            console.log(res)
-            return res
-        })
-        .then(this.prepRedirect()) 
+        // .then(res=>{
+        //     console.log(res)
+        //     return res
+        // })
+        // .then(this.prepRedirect())
+        // .then(() => this.prepRedirect())
+        .then( () => {
+            // debugger;
+            this.setState({
+            redirect:true
+        })}  ) 
         // this.props.history.push('/profile')
         
         

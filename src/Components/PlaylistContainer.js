@@ -21,6 +21,7 @@ class PlaylistContainer extends Component {
 
 
     componentDidMount(){
+        // debugger;
         UserAdapter.getUser(this.props.user.id).then(res => this.setState({
             loadingsPlaylists: false,
             playlists: res.playlists
@@ -29,7 +30,6 @@ class PlaylistContainer extends Component {
 
     mapPlaylists = () => {
         let userPlaylistArr = this.state.playlists
-        console.log(userPlaylistArr)
         return userPlaylistArr.map(
             playlist => <Playlist key={playlist.id} playlist={playlist} /> 
         )

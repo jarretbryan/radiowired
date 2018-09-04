@@ -4,7 +4,7 @@ const initialState = {
 }
 
 const playerReducer = (state = initialState, action) => {
-    console.log('working?')
+    // console.log('working?')
     switch (action.type) {
         case 'show-player':
             return { visiblePlayer: true}

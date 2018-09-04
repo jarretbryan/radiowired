@@ -1,10 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {showPlayer, hidePlayer} from '../Actions/playerActions';
-import playerReducer from '../Reducers/PlayerReducer';
 
 const Stream = (props) => {
-    console.log(props)
     if (props.visiblePlayer === false){
     return (<div>
         <h4>{props.stream.title}</h4>
