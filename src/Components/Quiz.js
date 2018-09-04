@@ -69,7 +69,12 @@ class Quiz extends Component {
             user_id: this.props.user.id,
             list_length: parseInt(this.state.listLength)
         }
-        GenreAdapter.postGenre(submitObj).then(this.prepRedirect()) 
+        GenreAdapter.postGenre(submitObj)
+        .then(res=>{
+            console.log(res)
+            return res
+        })
+        .then(this.prepRedirect()) 
         // this.props.history.push('/profile')
         
         
@@ -101,8 +106,8 @@ class Quiz extends Component {
                     <h1>What do you feel like getting</h1>
                     <form onSubmit={this.handleSubmit}>
                     <label htmlFor="numOfCasts">How many podcats would you like in your playlist? (1-5)</label><br/>
-                    <select id="numOfCasts" value={this.state.listLength} onChange={this.handleDrop}>
-                        <option value="" selected disabled hidden>Choose here</option>
+                    <select id="numOfCasts" value={this.state.listLength} onChange={this.handleDrop} required>
+                        <option value="" selected disabled hidden >Choose here</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

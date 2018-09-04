@@ -22,7 +22,10 @@ export default class GenreAdapter {
             },
             body: JSON.stringify(obj)
         })
-        // .then(res => res.json())
+        .then(res => res.json())
+        .then(data => {
+            return data
+        })
 
     }
             
