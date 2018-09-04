@@ -6,7 +6,7 @@ const Stream = (props) => {
     if (props.visiblePlayer === false){
     return (<div>
         <h4>{props.stream.title}</h4>
-        <img onClick={props.showPlayer} src={props.stream.thumbnail} alt={props.stream.title} />
+        <img onClick={() => props.showPlayer(props.stream.ep_id)} src={props.stream.thumbnail} alt={props.stream.title} />
         <p>{props.stream.description}</p>
     </div>)
     } else {
@@ -19,14 +19,15 @@ const Stream = (props) => {
 }
 
 
-const mapStateToProps = ({ playerReducer: { visiblePlayer }}) => ({
-    visiblePlayer
+const mapStateToProps = ({ playerReducer: { visiblePlayer, streamId }}) => ({
+    visiblePlayer,
+    streamId
 })
 
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        showPlayer: () => dispatch(showPlayer()),
+        showPlayer: (num) => dispatch(showPlayer(num)),
         // // showAudio: () => dispatch(showPlayer()),
         hidePlayer: () => dispatch(hidePlayer())
     }

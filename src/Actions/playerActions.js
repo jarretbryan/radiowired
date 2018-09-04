@@ -1,7 +1,8 @@
-export const showPlayer = () => {
+export const showPlayer = (num) => {
     // console.log('hey!') 
     return {
-        type: 'show-player'
+        type: 'show-player',
+        payload: num
     }
 }
 
