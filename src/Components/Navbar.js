@@ -26,13 +26,21 @@ class Navbar extends Component {
             localStorage.removeItem('jwt')
             this.props.logoutUser()
     }
+
+    logoLink = () => {
+        if (this.props.loggedIn===true){
+            return <NavLink to='/profile'><img src="http://icons.iconarchive.com/icons/kyo-tux/phuzion/256/Misc-RSS-icon.png" className="App-logo" alt="logo" /> </NavLink>
+        } else {
+            return <NavLink to='/'><img src="http://icons.iconarchive.com/icons/kyo-tux/phuzion/256/Misc-RSS-icon.png" className="App-logo" alt="logo" /> </NavLink>
+        }
+    }
     
     render() {
         return (
             <Fragment>
 
             <header className="App-header">
-                <img src="http://icons.iconarchive.com/icons/kyo-tux/phuzion/256/Misc-RSS-icon.png" className="App-logo" alt="logo" />
+                {this.logoLink()} 
                 <h1 className="App-title">RadioWired</h1>
                 {this.logButton()}
             </header>
