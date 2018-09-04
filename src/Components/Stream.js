@@ -21,8 +21,6 @@ const Stream = (props) => {
 }
 
 
-
-
 const mapStateToProps = ({ playerReducer: { visiblePlayer }}) => ({
     visiblePlayer
 })

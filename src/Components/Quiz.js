@@ -10,7 +10,8 @@ class Quiz extends Component {
     state = {
         selectedGenres:[],
         defaultSelected: false,
-        redirect: false
+        redirect: false,
+        listLength: ""
     }
 
     componentDidMount(){
@@ -41,6 +42,12 @@ class Quiz extends Component {
         }
     }
 
+    handleDrop = (event) => {
+        this.setState({
+            listLength: event.target.value
+        })
+    }
+
     prepRedirect = () => {
         this.setState({
             redirect: true
@@ -60,7 +67,7 @@ class Quiz extends Component {
         let submitObj = {
             selectedGenres: this.state.selectedGenres,
             user_id: this.props.user.id,
-            list_length: 2
+            list_length: parseInt(this.state.listLength)
         }
         GenreAdapter.postGenre(submitObj).then(this.prepRedirect()) 
         // this.props.history.push('/profile')
@@ -84,27 +91,6 @@ class Quiz extends Component {
         } )
     }
 
-    // showQuiz = () => {
-    //     if (!this.props.loggedIn) {
-    //         return <Redirect to="/" />
-    //     } else {
-    //         return (<Fragment>
-
-    //             <NavLink to='/profile'>Back to your profile!</NavLink>
-    //             {this.renderRedirect()}
-    //             <div className='card'>
-    //                 <h1>What do you feel like getting</h1>
-    //                 <form onSubmit={this.handleSubmit}>
-    //                     <ul>
-    //                         {this.genreMap()}
-    //                     </ul>
-    //                     <input type="submit" value="PODCAST ME UP BABY" />
-    //                 </form>
-    //             </div>
-    //         </Fragment>) 
-    //     }
-    // }
- 
     render() {
         return (
             <Fragment>
@@ -114,6 +100,15 @@ class Quiz extends Component {
                 <div className='card'>
                     <h1>What do you feel like getting</h1>
                     <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="numOfCasts">How many podcats would you like in your playlist? (1-5)</label><br/>
+                    <select id="numOfCasts" value={this.state.listLength} onChange={this.handleDrop}>
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                         <ul>
                             {this.genreMap()}
                         </ul>

@@ -1,5 +1,5 @@
 export const showPlayer = () => {
-    console.log('hey!') 
+    // console.log('hey!') 
     return {
         type: 'show-player'
     }
