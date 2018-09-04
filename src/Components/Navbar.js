@@ -1,6 +1,32 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom' 
+import { logoutUser } from '../Actions/index';
+
 
 class Navbar extends Component {
+    
+    logButton = () => {
+        if (this.props.loggedIn === false){
+            return(
+                <button>
+                    <NavLink to='/login'>Login</NavLink>
+                </button>   
+            ) 
+        } else {
+            return <button onClick={this.logOut}> 
+                <NavLink to='/' >
+                    LogOut
+                </NavLink>
+            </button>
+        }
+    }
+    
+    logOut = () => {
+            localStorage.removeItem('jwt')
+            this.props.logoutUser()
+    }
+    
     render() {
         return (
             <Fragment>
@@ -8,6 +34,7 @@ class Navbar extends Component {
             <header className="App-header">
                 <img src="http://icons.iconarchive.com/icons/kyo-tux/phuzion/256/Misc-RSS-icon.png" className="App-logo" alt="logo" />
                 <h1 className="App-title">RadioWired</h1>
+                {this.logButton()}
             </header>
           
             </Fragment>
@@ -15,4 +42,8 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+const mapStateToProps = ({ usersReducer: { loggedIn } }) => ({
+    loggedIn
+})
+
+export default connect(mapStateToProps, {logoutUser})(Navbar);

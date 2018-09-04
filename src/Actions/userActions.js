@@ -25,7 +25,7 @@ export const loginUser = (email, password) => {
                 dispatch(setCurrentUser(user))
             }).catch(error => {
                 console.log(error)
-                localStorage.removeItem('')
+                localStorage.removeItem('jwt')
                 dispatch(badLogin(error))
             })
     }
@@ -56,5 +56,9 @@ export const authenticatingUser = () => ({ type: 'authenticated' })
 export const badLogin = error => {
     return { type: 'login-error', payload: error }
 }
+
+export const logoutUser = () => ({
+    type: 'logout-user'
+})
     
     

@@ -57,6 +57,8 @@ const usersReducer = (state=initialState, action) => {
                 error: action.payload,
                 checkingAuth: false
             }
+        case 'logout-user':
+            return initialState
         default:
             return state
     }
