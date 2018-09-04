@@ -39,7 +39,9 @@ class Profile extends Component {
     }
     
     showProfile = () => {
-        if (!this.props.loggedIn){
+        if (!localStorage.loggedIn){
+            console.log(this.props.user)
+            debugger;
             return <Redirect to="/" />
         } else {
             return (
@@ -61,6 +63,7 @@ class Profile extends Component {
             );
         }
     }
+
     
     render() {
         return(

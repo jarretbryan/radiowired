@@ -7,7 +7,7 @@ import { logoutUser } from '../Actions/index';
 class Navbar extends Component {
     
     logButton = () => {
-        if (this.props.loggedIn === false){
+        if (!localStorage.loggedIn){
             return(
                 <button>
                     <NavLink to='/login'>Login</NavLink>
@@ -23,12 +23,12 @@ class Navbar extends Component {
     }
     
     logOut = () => {
-            localStorage.removeItem('jwt')
+            localStorage.clear()
             this.props.logoutUser()
     }
 
     logoLink = () => {
-        if (this.props.loggedIn===true){
+        if (!!localStorage.loggedIn){
             return <NavLink to='/profile'><img src="http://icons.iconarchive.com/icons/kyo-tux/phuzion/256/Misc-RSS-icon.png" className="App-logo" alt="logo" /> </NavLink>
         } else {
             return <NavLink to='/'><img src="http://icons.iconarchive.com/icons/kyo-tux/phuzion/256/Misc-RSS-icon.png" className="App-logo" alt="logo" /> </NavLink>

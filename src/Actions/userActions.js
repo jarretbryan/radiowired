@@ -22,10 +22,11 @@ export const loginUser = (email, password) => {
             })
             .then(({ user, jwt }) => {
                 localStorage.setItem('jwt', jwt)
+                localStorage.setItem('loggedIn', 'true')
                 dispatch(setCurrentUser(user))
             }).catch(error => {
                 console.log(error)
-                localStorage.removeItem('jwt')
+                localStorage.clear()
                 dispatch(badLogin(error))
             })
     }
@@ -34,6 +35,7 @@ export const loginUser = (email, password) => {
 export const fetchCurrentUser = () => {
     // takes the token in localStorage and finds out who it belongs to
     return dispatch => {
+        
         fetch('http://localhost:4000/api/v1/profile', {
             method: 'GET',
             headers: {
@@ -51,7 +53,7 @@ export const setCurrentUser = userData => ({
 })
 
 // tell our app we're currently fetching
-export const authenticatingUser = () => ({ type: 'authenticated' })
+export const authenticatingUser = () => ({ type: 'authenticating' })
 
 export const badLogin = error => {
     return { type: 'login-error', payload: error }

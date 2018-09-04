@@ -4,6 +4,7 @@ import { Redirect } from 'react-router'
 // import * as actions from '../actions'
 import  * as actions from '../Actions/index';
 import radio from '../gifs/Radio-1.2s-200px.gif'; 
+import { authenticatingUser } from '../Actions/index';
 
 
 
@@ -15,6 +16,7 @@ const AuthWrapper = WrappedComponent => {
         }
 
         render() {
+            // debugger;
             if (localStorage.getItem('jwt') && this.props.loggedIn) {
                 return <WrappedComponent />
             } else if (localStorage.getItem('jwt') && this.props.checkingAuth) {
@@ -32,7 +34,8 @@ const AuthWrapper = WrappedComponent => {
 }
 
 const mapStateToProps = ({ usersReducer: { loggedIn, checkingAuth } }) => ({
-    loggedIn
+    loggedIn,
+    checkingAuth
 })
 
 export default AuthWrapper
