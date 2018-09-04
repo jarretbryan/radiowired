@@ -22,4 +22,32 @@ export default class StreamAdapter {
         }).then(res => res.json())
     }
 
+    // static get_episodes(streamId){
+    //     return fetch(`ENDPOINT THAT I NEED TO IMPLEMENT ON THE BACKEND`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json',
+    //             Authorization: `Bearer ${localStorage.getItem('jwt')}`
+    //         },
+    //         body: JSON.stringify({
+    //             stream_id: streamId
+    //         })
+    //     }).then(res => res.json())
+    // }
+
+    // static delete_episodes(streamId){
+    //     return fetch(`ENDPOINT THAT I NEED TO IMPLEMENT ON THE BACKEND`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'Accept': 'application/json',
+    //             Authorization: `Bearer ${localStorage.getItem('jwt')}`
+    //         },
+    //         body: JSON.stringify({
+    //             stream_id: streamId
+    //         })
+    //     }).then(res => res.json())
+    // }
+
 }
