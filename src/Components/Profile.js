@@ -5,6 +5,8 @@ import Player from './Player';
 import { Redirect } from 'react-router-dom'
 import PlaylistForm from './PlaylistForm';
 import AuthWrapper from '../HOComponents/AuthWrapper';
+import { Container, Divider, Card, Icon, Image } from 'semantic-ui-react'
+
 
 
 class Profile extends Component {
@@ -54,17 +56,28 @@ class Profile extends Component {
         } else {
             return (
                 <div id='profile'>
-                    <header>
-                        <img src={this.props.user.profile_image} alt={this.props.username} />
-                        <h4>{this.props.user.username}</h4>
+                    <Card centered>
+                        
+                        <Image src={this.props.user.profile_image} alt={this.props.username} />
+                        <Card.Header>       
+                            {this.props.user.username}
+                        </Card.Header>
+                            <Card.Content>
+                                <Card.Meta>
+                                    This is your profile - make some playlists!
+                                </Card.Meta>
+                            </Card.Content>
 
-                    </header>
-                    <p>hey let's listen to some podcasts this is your profile!</p>
+                    </Card>
+                   
                     
                     <button onClick={this.makeNewPlaylist}>Make a new Playlist!</button>
 
                     {this.showAudioPlayer()}
                     {this.showNewPlaylistForm()}
+
+                    <Divider />
+
                     <PlaylistContainer />
 
                 </div>
@@ -75,9 +88,9 @@ class Profile extends Component {
     
     render() {
         return(
-            <Fragment>
+            <Container>
                 {this.showProfile()}
-            </Fragment>
+            </Container>
         )
     }
 }

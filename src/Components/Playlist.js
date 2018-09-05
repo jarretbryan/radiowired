@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Stream from './Stream';
-import name from '../api/StreamAdapter';
 import StreamAdapter from '../api/StreamAdapter';
+import { Container, Divider } from 'semantic-ui-react'
+
 
 class Playlist extends Component {
 
@@ -29,12 +30,13 @@ class Playlist extends Component {
 
     render() {
         return (
-            <div>
+            <Container>
                 <h1>{this.props.playlist.title}</h1>
                 <p>{this.props.playlist.description}</p>
                 {/* <h1>{this.props.playlist.id}</h1> */}
                 {this.mapSubs()}
-            </div >
+                <Divider />
+            </Container >
         );
     }
 }
