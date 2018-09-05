@@ -4,6 +4,8 @@ import StreamAdapter from '../api/StreamAdapter';
 import radio from '../gifs/Radio-1.2s-200px.gif';
 // import audio from {this.state.audio}
 import ReactAudioPlayer from 'react-audio-player';
+import { Card } from 'semantic-ui-react'
+
 
 
 class Player extends Component {
@@ -47,21 +49,26 @@ class Player extends Component {
             return <img src={radio} alt="loading" />
         } else {
             return (
-                <Fragment>
-
-                    <h3>{this.state.episode_title}</h3>
-                    <p>{this.state.description}</p>
+                <Card centered fluid>
+                    <Card.Header>
+                        <h3>{this.state.episode_title}</h3>
+                    </Card.Header>
+                    <Card.Content>
+                        <p>{this.state.description}</p>
+                    </Card.Content>
+                    <Card.Content extra>
 
                     <ReactAudioPlayer
                         src={this.state.audio} 
                         autoPlay
                         controls
-                    />
+                        />
+                    </Card.Content>
                     {/* <audio controls="controls">
                         <source src={this.state.audio} type="audio/mpeg" />
                         Your browser does not support the audio element.
             </audio> */}
-                </Fragment>
+                </Card>
             )
         }
     }
