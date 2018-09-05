@@ -38,7 +38,7 @@ class PlaylistContainer extends Component {
     mapPlaylists = () => {
         let userPlaylistArr = this.state.playlists
         return userPlaylistArr.map(
-            playlist => <Grid.Column color={this.getRandomColor(this.state.colors)}>
+            playlist => <Grid.Column key={playlist.id} color={this.getRandomColor(this.state.colors)}>
                 <Playlist key={playlist.id} playlist={playlist} /> 
             </Grid.Column> 
         )

@@ -11,18 +11,18 @@ class Navbar extends Component {
     logButton = () => {
         if (!localStorage.loggedIn){
             return(
-                <Menu.Item position='right' name='login' >
-                    <Button basic inverted color='orange'>
+               
+                    <Button basic >
                         <NavLink to='/login'>Login</NavLink>
                     </Button>
-                </Menu.Item>   
+                 
             ) 
         } else {
-            return <Menu.Item position='right' onClick={this.logOut}> 
+            return <Button basic  position='right' onClick={this.logOut}> 
                 <NavLink to='/' >
                     LogOut
                 </NavLink>
-            </Menu.Item>
+            </Button>
         }
     }
     

@@ -3,7 +3,7 @@ import GenreAdapter from '../api/GenreAdapter';
 import { connect } from 'react-redux';
 import { getGenres } from '../Actions/index'
 import { NavLink, Redirect } from 'react-router-dom'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Card, Divider, Grid, Container } from 'semantic-ui-react'
 
 
 
@@ -96,11 +96,23 @@ class Quiz extends Component {
     genreMap = () => {
         return this.props.genres.map(genreObj => {
             return (
-                <li key={genreObj.id}>
-                    <input onChange={this.handleSelect} checked={this.props.defaultSelected} type="checkbox" id={genreObj.name} value={genreObj.api_id}/>
-                    <label htmlFor={genreObj.name}>{genreObj.name}</label>
+                // <li key={genreObj.id}>
+                <Card key={genreObj.id} color='olive' >
+                    <Card.Content>
+                        <Grid columns={2} relaxed>
+                            <Grid.Column>
 
-                </li>
+                        <label htmlFor={genreObj.name}>{genreObj.name}</label>
+                            </Grid.Column> 
+                    <Divider vertical/>
+                    <Grid.Column>
+                        <input onChange={this.handleSelect} checked={this.props.defaultSelected} type="checkbox" id={genreObj.name} value={genreObj.api_id}/>
+                    
+                            </Grid.Column>                   
+                        </Grid>
+                    </Card.Content>
+                {/* </li> */}
+                </Card>
             )
         } )
     }
@@ -111,10 +123,10 @@ class Quiz extends Component {
 
                 <NavLink to='/profile'>Back to your profile!</NavLink>
                 {this.renderRedirect()}
-                <div className='card'>
+                <Container>
                     <h1>What do you feel like getting</h1>
                     <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="numOfCasts">How many podcats would you like in your playlist? (1-5)</label><br/>
+                    <label htmlFor="numOfCasts">How many podcasts would you like in your playlist? (1-5)</label><br/>
                     <select id="numOfCasts" value={this.state.listLength} onChange={this.handleDrop} required>
                         <option value="" selected disabled hidden >Choose here</option>
                         <option value="1">1</option>
@@ -123,12 +135,14 @@ class Quiz extends Component {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                        <ul>
+                    <Divider />
+                        <Card.Group>
                             {this.genreMap()}
-                        </ul>
+                        </Card.Group>
+                    <Divider />
                         <input type="submit" value="PODCAST ME UP BABY" />
                     </form>
-                </div>
+                </Container>
             </Fragment>
         );
     }
