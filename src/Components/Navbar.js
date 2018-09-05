@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom' 
 import { logoutUser } from '../Actions/index';
+import { Menu, MenuItem, Button } from 'semantic-ui-react'
+
 
 
 class Navbar extends Component {
@@ -9,16 +11,18 @@ class Navbar extends Component {
     logButton = () => {
         if (!localStorage.loggedIn){
             return(
-                <button>
-                    <NavLink to='/login'>Login</NavLink>
-                </button>   
+                <Menu.Item position='right' name='login' >
+                    <Button basic inverted color='orange'>
+                        <NavLink to='/login'>Login</NavLink>
+                    </Button>
+                </Menu.Item>   
             ) 
         } else {
-            return <button onClick={this.logOut}> 
+            return <Menu.Item position='right' onClick={this.logOut}> 
                 <NavLink to='/' >
                     LogOut
                 </NavLink>
-            </button>
+            </Menu.Item>
         }
     }
     
@@ -37,15 +41,16 @@ class Navbar extends Component {
     
     render() {
         return (
-            <Fragment>
+            <Menu inverted>
 
-            <header className="App-header">
                 {this.logoLink()} 
-                <h1 className="App-title">RadioWired</h1>
+            <Menu.Item header> RadioWired </Menu.Item>
+                {/* <h1 className="App-title">RadioWired</h1> */}
+            <Menu.Item>
                 {this.logButton()}
-            </header>
+            </Menu.Item>
           
-            </Fragment>
+            </Menu>
         );
     }
 }

@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { loginUser } from '../Actions/index';
 import { NavLink, Redirect } from 'react-router-dom' 
+import { Container, Button, Form, Divider, Message } from 'semantic-ui-react'
+
 
 
 class UserLogin extends Component {
@@ -32,7 +34,11 @@ class UserLogin extends Component {
             color:'red'
         }
         if (!!this.props.error){
-            return <h4 style={redText}>Incorrect login credentials</h4>
+            return (
+            <Message negative>
+                <Message.Header>Incorrect Login Credentials</Message.Header>
+                <p>Did you enter your email address and password correctly?</p>
+            </Message>)
         }
     }
 
@@ -41,21 +47,29 @@ class UserLogin extends Component {
         if (!!this.props.loggedIn){
             return <Redirect to='/profile' />
         } else {
-            return (<Fragment>
+            return (<Container>
                 {this.showError()}
 
-                <form id="registerForm" onSubmit={this.handleSubmit}>
-                    <label htmlFor="email-input">Login with your email!</label> <br />
-                    <input type="text" id="email-input" name="email" value={this.state.email} placeholder="example@example.com" onChange={this.handleChange} required /> <br />
-                    <label htmlFor="password-input">Enter Your Password!</label><br />
-                    <input type="password" id="password-input" name="password" value={this.state.password} placeholder="enter a secure password" onChange={this.handleChange} required /><br />
-                    <input type="submit" />  <br />
-                </form>
+                <Form id="registerForm" onSubmit={this.handleSubmit}>
+                    <Form.Field>
+                        <label htmlFor="email-input">Login with your email!</label>
+                        <input type="text" id="email-input" name="email" value={this.state.email} placeholder="example@example.com" onChange={this.handleChange} required />
+                    </Form.Field>
+                    <Form.Field>
+                        <label htmlFor="password-input">Enter Your Password!</label><br />
+                        <input type="password" id="password-input" name="password" value={this.state.password} placeholder="enter a secure password" onChange={this.handleChange} required /><br />
+                    </Form.Field>
+                    <Button inverted color="green" position="right" type='submit'>Submit</Button>
+                </Form>
+                <Divider />
 
-                <p>Don't have a login?</p>
-                <NavLink to='register'>Sign Up Here</NavLink>
+                <h3>Don't have a login?</h3>
 
-            </Fragment>)
+                <Button>
+                    <NavLink to='register'>Sign Up Here</NavLink>
+                </Button>
+
+            </Container>)
         }
     }
 
