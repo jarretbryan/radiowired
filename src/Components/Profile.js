@@ -5,7 +5,7 @@ import Player from './Player';
 import { Redirect } from 'react-router-dom'
 import PlaylistForm from './PlaylistForm';
 import AuthWrapper from '../HOComponents/AuthWrapper';
-import { Container, Divider, Card, Icon, Image } from 'semantic-ui-react'
+import { Container, Divider, Card, Button, Image } from 'semantic-ui-react'
 
 
 
@@ -20,7 +20,7 @@ class Profile extends Component {
             return (
                 <Fragment>
                     <PlaylistForm />
-                    <button onClick={this.hidePlaylistForm}>X</button>
+                    <Button onClick={this.hidePlaylistForm}>X</Button>
                 </Fragment>
             )
         } else {
@@ -55,7 +55,7 @@ class Profile extends Component {
             return <Redirect to="/" />
         } else {
             return (
-                <div id='profile'>
+                <Container id='profile'>
                     <Card centered>
                         
                         <Image src={this.props.user.profile_image} alt={this.props.username} />
@@ -71,7 +71,7 @@ class Profile extends Component {
                     </Card>
                    
                     
-                    <button onClick={this.makeNewPlaylist}>Make a new Playlist!</button>
+                    <Button primary onClick={this.makeNewPlaylist}>Make a new Playlist!</Button>
 
                     {this.showAudioPlayer()}
                     {this.showNewPlaylistForm()}
@@ -80,8 +80,8 @@ class Profile extends Component {
 
                     <PlaylistContainer />
 
-                </div>
-            );
+                </Container>
+             );
         }
     }
 

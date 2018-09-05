@@ -2,7 +2,9 @@ import React, { Component, Fragment} from 'react';
 import GenreAdapter from '../api/GenreAdapter';
 import { connect } from 'react-redux';
 import { getGenres } from '../Actions/index'
-import { NavLink, Redirect } from 'react-router-dom' 
+import { NavLink, Redirect } from 'react-router-dom'
+import { Button, Checkbox, Form } from 'semantic-ui-react'
+
 
 
 class Quiz extends Component {
@@ -97,6 +99,7 @@ class Quiz extends Component {
                 <li key={genreObj.id}>
                     <input onChange={this.handleSelect} checked={this.props.defaultSelected} type="checkbox" id={genreObj.name} value={genreObj.api_id}/>
                     <label htmlFor={genreObj.name}>{genreObj.name}</label>
+
                 </li>
             )
         } )
