@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import StreamAdapter from '../api/StreamAdapter';
 import radio from '../gifs/Radio-1.2s-200px.gif';
-// import ReactAudioPlayer from 'react-audio-player';
+// import audio from {this.state.audio}
+import ReactAudioPlayer from 'react-audio-player';
 
 
 class Player extends Component {
@@ -51,15 +52,15 @@ class Player extends Component {
                     <h3>{this.state.episode_title}</h3>
                     <p>{this.state.description}</p>
 
-                    {/* <ReactAudioPlayer
+                    <ReactAudioPlayer
                         src={this.state.audio} 
                         autoPlay
                         controls
-                    /> */}
-                    <audio controls="controls">
+                    />
+                    {/* <audio controls="controls">
                         <source src={this.state.audio} type="audio/mpeg" />
                         Your browser does not support the audio element.
-            </audio>
+            </audio> */}
                 </Fragment>
             )
         }
