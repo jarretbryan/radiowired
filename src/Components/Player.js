@@ -4,7 +4,7 @@ import StreamAdapter from '../api/StreamAdapter';
 import radio from '../gifs/Radio-1.2s-200px.gif';
 // import audio from {this.state.audio}
 import ReactAudioPlayer from 'react-audio-player';
-import { Card, Sidebar, Image, Divider, Label } from 'semantic-ui-react'
+import { Card, Sidebar, Image, Divider, Menu } from 'semantic-ui-react'
 
 
 
@@ -50,34 +50,35 @@ class Player extends Component {
         } else {
             return (
                
-                <Sidebar inverted animation='overlay' direction='right' visible={true}  >
+                <Sidebar as={Menu} inverted vertical animation='overlay' direction='right' visible={true}  >
                  
                   
-                <Card fluid>
-                       
-                    <Card.Header>
+                <Menu.Item>
                         <h1>{this.props.streamTitle}</h1>
                         <h4>{this.state.episode_title}</h4>
-                    </Card.Header>
+                </Menu.Item>       
                     
-                    <Card.Content>
+                <Menu.Item>
 
-                    <Image src={this.props.thumbnail} /> 
-                    <Divider />   
+                    <Image src={this.props.thumbnail} centered /> 
+                </Menu.Item>
+                <Menu.Item>
+
+                  
                     <ReactAudioPlayer
                         src={this.state.audio} 
                         autoPlay
                         controls
                         />
-                    </Card.Content>
+                        <Divider />
 
-                    <Card.Content extra>
                         <p>{this.state.description}</p>
-                    </Card.Content>
+                    </Menu.Item>
                
-                </Card>
-               
+               <Menu.Item>
+
                 <h6> Audio Not Playing? Some Podcast Audio is designed to only be accessible from the publisher's website - if it doesn't play after a few seconds, we might not have access to it. Sorry!</h6>
+               </Menu.Item>
               
 
                 </Sidebar>

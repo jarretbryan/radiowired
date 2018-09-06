@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom' 
 import { logoutUser } from '../Actions/index';
-import { Menu, MenuItem, Button } from 'semantic-ui-react'
+import { Menu, Button, Search, Label, Image } from 'semantic-ui-react'
 
 
 
@@ -14,15 +14,27 @@ class Navbar extends Component {
                
                     <Button basic >
                         <NavLink to='/login'>Login</NavLink>
-                    </Button>
-                 
+                    </Button> 
             ) 
         } else {
-            return <Button basic  position='right' onClick={this.logOut}> 
+            return <Button basic onClick={this.logOut}> 
                 <NavLink to='/' >
                     LogOut
                 </NavLink>
             </Button>
+        }
+    }
+
+
+    searchField = () => {
+        if (!!localStorage.loggedIn){
+            return(        
+                <Menu.Item position="right">    
+                    <Search />
+                </Menu.Item>     
+            )
+        } else {
+            return null
         }
     }
     
@@ -42,20 +54,20 @@ class Navbar extends Component {
     render() {
         return (
             <Menu inverted>
-
                 {this.logoLink()} 
             <Menu.Item header> RadioWired </Menu.Item>
-                {/* <h1 className="App-title">RadioWired</h1> */}
-            <Menu.Item>
+            {this.searchField()}
+            
+            <Menu.Item position='right'>
                 {this.logButton()}
             </Menu.Item>
-          
             </Menu>
         );
     }
 }
 
-const mapStateToProps = ({ usersReducer: { loggedIn } }) => ({
+const mapStateToProps = ({ usersReducer: { user, loggedIn } }) => ({
+    user,
     loggedIn
 })
 
