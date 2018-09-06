@@ -5,7 +5,9 @@ import Player from './Player';
 import { Redirect } from 'react-router-dom'
 import PlaylistForm from './PlaylistForm';
 import AuthWrapper from '../HOComponents/AuthWrapper';
-import { Container, Divider, Card, Button, Image } from 'semantic-ui-react'
+import { Container, Divider, Card, Button, Image, Label, Segment } from 'semantic-ui-react'
+import apiLogo from '../gifs/api-transparent background for white background.png';
+import githubLogo from '../gifs/GitHub-Mark-32px.png';
 
 
 
@@ -56,6 +58,7 @@ class Profile extends Component {
         } else {
             return (
                 <Container id='profile'>
+
                     <Card centered>
                         
                         <Image src={this.props.user.profile_image} alt={this.props.username} />
@@ -79,6 +82,14 @@ class Profile extends Component {
                     <Divider />
 
                     <PlaylistContainer />
+                    <Segment>
+                        <Label as='a' image>
+                            <img src={apiLogo} />
+                            <Label.Detail>Made with ♥️ at the Flatiron School</Label.Detail>
+                        </Label>
+                   
+
+                    </Segment>
 
                 </Container>
              );

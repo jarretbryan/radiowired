@@ -4,7 +4,7 @@ import StreamAdapter from '../api/StreamAdapter';
 import radio from '../gifs/Radio-1.2s-200px.gif';
 // import audio from {this.state.audio}
 import ReactAudioPlayer from 'react-audio-player';
-import { Card } from 'semantic-ui-react'
+import { Card, Sidebar, Image, Divider, Label } from 'semantic-ui-react'
 
 
 
@@ -22,10 +22,10 @@ class Player extends Component {
     componentDidMount(){
         StreamAdapter.get_episodes(this.props.streamId)
         .then(res => this.setState({
-            epside_title: res.latest_episode.title,
-            description: res.latest_episode.description,
-            audio: res.latest_episode.audio,
-            audio_length: res.latest_episode.audio_length   
+            episode_title: res.latest_episode['title'],
+            description: res.latest_episode['description'],
+            audio: res.latest_episode['audio'],
+            audio_length: res.latest_episode['audio_length']   
         }))
         // this will have a fetch GET request to my API, which wil get from the third party api 
         //streamAdapter.get_episodes(this.props.streamID).then(() => this.setState......)
@@ -49,26 +49,39 @@ class Player extends Component {
             return <img src={radio} alt="loading" />
         } else {
             return (
-                <Card centered fluid>
+               
+                <Sidebar inverted animation='overlay' direction='right' visible={true}  >
+                 
+                  
+                <Card fluid>
+                       
                     <Card.Header>
-                        <h3>{this.state.episode_title}</h3>
+                        <h1>{this.props.streamTitle}</h1>
+                        <h4>{this.state.episode_title}</h4>
                     </Card.Header>
+                    
                     <Card.Content>
-                        <p>{this.state.description}</p>
-                    </Card.Content>
-                    <Card.Content extra>
 
+                    <Image src={this.props.thumbnail} /> 
+                    <Divider />   
                     <ReactAudioPlayer
                         src={this.state.audio} 
                         autoPlay
                         controls
                         />
                     </Card.Content>
-                    {/* <audio controls="controls">
-                        <source src={this.state.audio} type="audio/mpeg" />
-                        Your browser does not support the audio element.
-            </audio> */}
+
+                    <Card.Content extra>
+                        <p>{this.state.description}</p>
+                    </Card.Content>
+               
                 </Card>
+               
+                <h6> Audio Not Playing? Some Podcast Audio is designed to only be accessible from the publisher's website - if it doesn't play after a few seconds, we might not have access to it. Sorry!</h6>
+              
+
+                </Sidebar>
+                
             )
         }
     }
@@ -84,8 +97,10 @@ class Player extends Component {
     }
 }
 
-const mapStateToProps = ({playerReducer:{streamId}}) => ({
-    streamId
+const mapStateToProps = ({playerReducer:{streamId, thumbnail, streamTitle}}) => ({
+    streamId,
+    thumbnail,
+    streamTitle
 })
 
 export default connect(mapStateToProps)(Player);

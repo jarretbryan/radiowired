@@ -1,27 +1,38 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {showPlayer, hidePlayer} from '../Actions/playerActions';
+import { Card, Divider } from 'semantic-ui-react'
+
 
 const Stream = (props) => {
     if (props.visiblePlayer === false){
     return (<div>
         <h4>{props.stream.title}</h4>
-        <img onClick={() => props.showPlayer(props.stream.ep_id)} src={props.stream.thumbnail} alt={props.stream.title} />
+        <img onClick={() => props.showPlayer({
+            streamId: props.stream.ep_id,
+            thumbnail:props.stream.thumbnail,
+            streamTitle: props.stream.title
+        })} src={props.stream.thumbnail} alt={props.stream.title} />
         <p>{props.stream.description}</p>
     </div>)
     } else {
         return (<div>
-            <h4>{props.stream.title}</h4>
-            <img onClick={props.hidePlayer} src={props.stream.thumbnail} alt={props.stream.title} />
+            <Divider />
+            <h3>{props.stream.title}</h3>
+            
+                <img onClick={props.hidePlayer} src={props.stream.thumbnail} alt={props.stream.title} />
+            
             <p>{props.stream.description}</p>
         </div>)
     }
 }
 
 
-const mapStateToProps = ({ playerReducer: { visiblePlayer, streamId }}) => ({
+const mapStateToProps = ({ playerReducer: { visiblePlayer, streamId, thumbnail, streamTitle }}) => ({
     visiblePlayer,
-    streamId
+    streamId,
+    thumbnail,
+    streamTitle
 })
 
 

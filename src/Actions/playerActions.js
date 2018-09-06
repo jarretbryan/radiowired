@@ -1,8 +1,8 @@
-export const showPlayer = (num) => {
+export const showPlayer = (streamInfoObj) => {
     // console.log('hey!') 
     return {
         type: 'show-player',
-        payload: num
+        payload: streamInfoObj
     }
 }
 

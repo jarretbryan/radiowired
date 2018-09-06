@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import Stream from './Stream';
 import StreamAdapter from '../api/StreamAdapter';
-import { Container, Divider } from 'semantic-ui-react'
+import { Card, Divider } from 'semantic-ui-react'
 
 
 class Playlist extends Component {
 
     state = {
-        subscriptions: []
+        subscriptions: [],
+        colors: ['orange', 'olive', 'olive', 'teal', 'blue']
     }
 
     componentDidMount(){
@@ -15,7 +16,10 @@ class Playlist extends Component {
         this.getSubs()
     }
 
-    // this has to be abstracted to an adapter    
+    getRandomColor = colorArr => {
+        return colorArr[Math.floor(Math.random() * colorArr.length)]
+    }
+
     getSubs = () => {
         StreamAdapter.stream_index(this.props.playlist.id)
         .then(res => this.setState({
@@ -30,13 +34,19 @@ class Playlist extends Component {
 
     render() {
         return (
-            <Container>
-                <h1>{this.props.playlist.title}</h1>
+            <Card color={this.getRandomColor(this.state.colors)} fluid>
+                <Card.Header>
+                    <h1>
+                        {this.props.playlist.title}
+                    </h1>
+                </Card.Header>
+                <Card.Content>
                 <p>{this.props.playlist.description}</p>
+                </Card.Content>
                 {/* <h1>{this.props.playlist.id}</h1> */}
                 {this.mapSubs()}
                 <Divider />
-            </Container >
+            </Card >
         );
     }
 }

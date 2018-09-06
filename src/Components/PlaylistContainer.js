@@ -3,7 +3,7 @@ import Playlist from './Playlist';
 import { connect } from 'react-redux';
 import UserAdapter from '../api/UserAdapter';
 import radio from '../gifs/Radio-1.2s-200px.gif';
-import { Grid } from 'semantic-ui-react'
+import { Grid, Card } from 'semantic-ui-react'
 
 
 
@@ -18,8 +18,7 @@ class PlaylistContainer extends Component {
     // rather than getting playlists from the user props, fetch every time. 
     state = {
         loadingsPlaylists: true,
-        playlists: [],
-        colors: ['orange', 'olive', 'olive', 'teal', 'blue']
+        playlists: []
     }
 
 
@@ -31,15 +30,14 @@ class PlaylistContainer extends Component {
         }))
     }
 
-    getRandomColor = colorArr => {
-        return colorArr[Math.floor(Math.random() * colorArr.length)]
-    }
 
     mapPlaylists = () => {
         let userPlaylistArr = this.state.playlists
         return userPlaylistArr.map(
-            playlist => <Grid.Column key={playlist.id} color={this.getRandomColor(this.state.colors)}>
+            playlist => <Grid.Column key={playlist.id} >
+            <Card.Group>
                 <Playlist key={playlist.id} playlist={playlist} /> 
+            </Card.Group>
             </Grid.Column> 
         )
     }
@@ -53,9 +51,10 @@ class PlaylistContainer extends Component {
                 </Fragment>
         )
         } else {
-            return (<Grid.Row id='playlist-card'>
+            return (
+            <Fragment>
                 {this.mapPlaylists()}
-            </Grid.Row>)
+            </Fragment>)
         }
     }
  
