@@ -55,23 +55,7 @@ class Profile extends Component {
             return <Redirect to="/" />
         } else {
             return (
-                <Container id='profile'>
-
-                    <Card centered>
-                        
-                        <Image src={this.props.user.profile_image} alt={this.props.username} />
-                        <Card.Header>       
-                            {this.props.user.username}
-                        </Card.Header>
-                            <Card.Content>
-                                <Card.Meta>
-                                    This is your profile - make some playlists!
-                                </Card.Meta>
-                            </Card.Content>
-
-                    </Card>
-                   
-                    
+                <Container id='profile'>        
                     <Button primary onClick={this.makeNewPlaylist}>Make a new Playlist!</Button>
 
                     {this.showAudioPlayer()}

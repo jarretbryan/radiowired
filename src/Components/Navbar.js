@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom' 
 import { logoutUser } from '../Actions/index';
-import { Menu, Button, Search, Icon, Image } from 'semantic-ui-react'
+import { Menu, Button, Search, Label, Image, Icon } from 'semantic-ui-react'
+import SearchBox from './SearchBox';
 
 
 
@@ -25,12 +26,27 @@ class Navbar extends Component {
         }
     }
 
+    profileInfo = () => {
+        if (!!localStorage.loggedIn && !!this.props.user){
+            return( 
+            <Menu.Item>  
+            <Label color='blue' image>
+                <Image avatar spaced="right" src={this.props.user.profile_image} />
+                {this.props.user.username}
+                        <Label.Detail> 
+                            <Icon fitted name='podcast' /> 
+                        </Label.Detail>
+            </Label>
+            </Menu.Item>  )
+        }
+    }
+
 
     searchField = () => {
         if (!!localStorage.loggedIn){
             return(        
                 <Menu.Item position="right">    
-                    <Search />
+                    <SearchBox />
                 </Menu.Item>     
             )
         } else {
@@ -56,8 +72,9 @@ class Navbar extends Component {
             <Menu inverted>
                 {this.logoLink()} 
             <Menu.Item header> RadioWired </Menu.Item>
+           
+            {this.profileInfo()}
             {this.searchField()}
-            
             <Menu.Item position='right'>
                 {this.logButton()}
             </Menu.Item>
