@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom' 
 import { logoutUser } from '../Actions/index';
-import { Menu, Button, Search, Label, Image } from 'semantic-ui-react'
+import { Menu, Button, Search, Icon, Image } from 'semantic-ui-react'
 
 
 

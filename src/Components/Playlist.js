@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Stream from './Stream';
 import StreamAdapter from '../api/StreamAdapter';
-import { Card, Divider } from 'semantic-ui-react'
+import { Card, Divider, Button, Form } from 'semantic-ui-react'
+import PlaylistForm from './PlaylistForm';
 
 
 class Playlist extends Component {
 
     state = {
         subscriptions: [],
-        colors: ['orange', 'olive', 'olive', 'teal', 'blue']
+        colors: ['orange', 'olive', 'olive', 'teal', 'blue'],
+        editing: false
     }
 
     componentDidMount(){
@@ -29,25 +31,50 @@ class Playlist extends Component {
     
 
     mapSubs = () => {
-       return this.state.subscriptions.map(stream => <Stream key={stream.id} stream={stream} />)
+        return this.state.subscriptions.map(stream => <Fragment key={stream.id}><Divider /> <Stream key={stream.id} stream={stream} /></Fragment>)
     }
+
+    handleEditClick = () => {
+        this.setState({
+            editing:true
+        })
+    }
+
+    ifEditing = () => {
+        if (this.state.editing === false){
+            return (
+                <Card color={this.getRandomColor(this.state.colors)} fluid>
+                    <Card.Header>
+                        <h1>
+                            {this.props.playlist.title}
+                        </h1>
+                    </Card.Header>
+                    <Card.Meta >
+                        <h3>{this.props.playlist.description}</h3>
+                    </Card.Meta>
+
+                    {this.mapSubs()}
+
+                    <Button onClick={this.handleEditClick}>Edit</Button>
+                </Card >
+            );
+        } else {
+            return <Card color={this.getRandomColor(this.state.colors)} fluid>
+                <PlaylistForm />
+
+                {this.mapSubs()}
+
+            </Card > 
+        }
+    }
+
+
+
 
     render() {
         return (
-            <Card color={this.getRandomColor(this.state.colors)} fluid>
-                <Card.Header>
-                    <h1>
-                        {this.props.playlist.title}
-                    </h1>
-                </Card.Header>
-                <Card.Content>
-                <p>{this.props.playlist.description}</p>
-                </Card.Content>
-                {/* <h1>{this.props.playlist.id}</h1> */}
-                {this.mapSubs()}
-                <Divider />
-            </Card >
-        );
+            this.ifEditing()
+        )
     }
 }
 

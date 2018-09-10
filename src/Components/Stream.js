@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {showPlayer, hidePlayer} from '../Actions/playerActions';
-import { Card, Divider } from 'semantic-ui-react'
+import { Divider } from 'semantic-ui-react'
 
 
 const Stream = (props) => {
@@ -17,10 +17,10 @@ const Stream = (props) => {
     </div>)
     } else {
         return (<div>
+            
             <Divider />
             <h3>{props.stream.title}</h3>
-            
-                <img onClick={props.hidePlayer} src={props.stream.thumbnail} alt={props.stream.title} />
+            <img onClick={props.hidePlayer} src={props.stream.thumbnail} alt={props.stream.title} />
             
             <p>{props.stream.description}</p>
         </div>)
