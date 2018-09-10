@@ -9,11 +9,12 @@ const Stream = (props) => {
     return (<div>
         <h4>{props.stream.title}</h4>
         <img src={props.stream.thumbnail} alt={props.stream.title} /><br/>
-        <Icon color='blue' name="play" size="big" onClick={() => props.showPlayer({
+        <Icon bordered inverted color='blue' name="play" size="small" onClick={() => props.showPlayer({
             streamId: props.stream.ep_id,
             thumbnail: props.stream.thumbnail,
             streamTitle: props.stream.title
         })}  />
+        <Icon color='red' size='large' name='heart outline' />
         <p>{props.stream.description}</p>
     </div>)
     } else {
@@ -22,7 +23,7 @@ const Stream = (props) => {
             <Divider />
             <h3>{props.stream.title}</h3>
             <img src={props.stream.thumbnail} alt={props.stream.title} /><br/>
-            <Icon color='red' size="big" name='stop circle' onClick={props.hidePlayer} />
+            <Icon inverted color='red' size="big" name='stop circle' onClick={props.hidePlayer} />
             
             <p>{props.stream.description}</p>
         </div>)
