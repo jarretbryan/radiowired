@@ -59,10 +59,10 @@ class Playlist extends Component {
                     <Card.Meta >
                         <h3>{this.props.playlist.description}</h3>
                     </Card.Meta>
+                    <Button onClick={this.handleEditClick}>Edit</Button>
 
                     {this.mapSubs()}
 
-                    <Button onClick={this.handleEditClick}>Edit</Button>
                 </Card >)
         }
     }

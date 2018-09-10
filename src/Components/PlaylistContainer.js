@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import UserAdapter from '../api/UserAdapter';
 import radio from '../gifs/Radio-1.2s-200px.gif';
 import { Grid, Card } from 'semantic-ui-react'
+import { refreshPlaylists } from '../Actions/playlistActions';
 
 
 
@@ -23,7 +24,17 @@ class PlaylistContainer extends Component {
 
 
     componentDidMount(){
-        // debugger;
+        this.loadPlaylists()  
+    }
+
+    componentDidUpdate(){
+        if (this.props.justUpdated === true){
+            this.loadPlaylists()
+            this.props.refresh()
+        }
+    }
+
+    loadPlaylists = () =>{
         UserAdapter.getUser(this.props.user.id).then(res => this.setState({
             loadingsPlaylists: false,
             playlists: res.playlists
@@ -68,9 +79,16 @@ class PlaylistContainer extends Component {
     }
 }
 
-const mapStateToProps = ({ usersReducer: { user } }) => ({
-    user
+const mapStateToProps = ({ usersReducer: { user }, playlistReducer: {justUpdated} }) => ({
+    user,
+    justUpdated
 })
 
-export default connect (mapStateToProps)(PlaylistContainer);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        refresh: () => dispatch(refreshPlaylists())
+    }
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(PlaylistContainer);
 
