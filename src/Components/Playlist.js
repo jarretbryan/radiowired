@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Stream from './Stream';
 import StreamAdapter from '../api/StreamAdapter';
+import { connect } from 'react-redux';
+import {editPlaylist} from '../Actions/playlistActions';
 import { Card, Divider, Button, Form } from 'semantic-ui-react'
 import PlaylistForm from './PlaylistForm';
 
@@ -10,7 +12,6 @@ class Playlist extends Component {
     state = {
         subscriptions: [],
         colors: ['orange', 'olive', 'olive', 'teal', 'blue'],
-        editing: false
     }
 
     componentDidMount(){
@@ -35,14 +36,20 @@ class Playlist extends Component {
     }
 
     handleEditClick = () => {
-        this.setState({
-            editing:true
-        })
+        this.props.editPL({title: this.props.playlist.title, description: this.props.playlist.description, id: this.props.playlist.id})
     }
 
     ifEditing = () => {
-        if (this.state.editing === false){
-            return (
+        if (this.props.isEditing === true && this.props.id === this.props.playlist.id){
+            return (<Card color={this.getRandomColor(this.state.colors)} fluid>
+                <PlaylistForm playlistID={this.props.playlist.id} />
+
+                {this.mapSubs()}
+
+            </Card >       
+            );
+        } else {
+            return( 
                 <Card color={this.getRandomColor(this.state.colors)} fluid>
                     <Card.Header>
                         <h1>
@@ -56,20 +63,9 @@ class Playlist extends Component {
                     {this.mapSubs()}
 
                     <Button onClick={this.handleEditClick}>Edit</Button>
-                </Card >
-            );
-        } else {
-            return <Card color={this.getRandomColor(this.state.colors)} fluid>
-                <PlaylistForm />
-
-                {this.mapSubs()}
-
-            </Card > 
+                </Card >)
         }
     }
-
-
-
 
     render() {
         return (
@@ -78,4 +74,19 @@ class Playlist extends Component {
     }
 }
 
-export default Playlist;
+const mapStateToProps = ({playlistReducer:{isEditing, title, description, id}}) => ({
+    isEditing,
+    title,
+    description,
+    id
+})
+
+const mapDispatchToProps = (dispatch) => {
+    return{
+        editPL: playlistObj => dispatch(editPlaylist(playlistObj))
+    }
+}
+
+
+
+export default connect (mapStateToProps, mapDispatchToProps)(Playlist);

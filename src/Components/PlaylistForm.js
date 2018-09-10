@@ -2,14 +2,23 @@ import React, { Component, Fragment } from 'react';
 import { NavLink, Redirect } from 'react-router-dom' 
 import { connect } from 'react-redux';
 import StreamAdapter from '../api/StreamAdapter';
+import { finishPlaylistEdit } from '../Actions/playlistActions';
 
 class PlaylistForm extends Component {
     
     state = {
         title: '',
         description: '',
-        genre: '',
         redirect: false
+    }
+
+    componentDidMount(){
+        if (this.props.isEditing === true && this.props.id===this.props.playlistID){
+            this.setState({
+                title: this.props.title,
+                description: this.props.description
+            })
+        }
     }
 
     handleChange = (event) => {
@@ -28,12 +37,17 @@ class PlaylistForm extends Component {
         event.preventDefault()
         const submitObj = {
             title: this.state.title,
-            description: this.state.description,
-            genre: this.state.genre,
-            user_id: this.props.user.id
+            description: this.state.description,            user_id: this.props.user.id,
+            playlist_id: this.props.playlistID
         }
-        StreamAdapter.post_playlist(submitObj)
-        this.prepRedirect()
+
+        if (this.props.isEditing === false){
+            StreamAdapter.post_playlist(submitObj)
+            this.prepRedirect()
+        } else {
+            StreamAdapter.edit_playlist(submitObj)
+            this.props.closeEdit()
+        }
     }
 
     renderRedirect = () => {
@@ -63,8 +77,18 @@ class PlaylistForm extends Component {
     }
 }
 
-const mapStateToProps = ({ usersReducer: { user } }) => ({
-    user
+const mapStateToProps = ({ usersReducer: { user }, playlistReducer: { isEditing, title, description, id } } ) => ({
+    user,
+    isEditing,
+    title,
+    description,
+    id
 })
 
-export default connect(mapStateToProps) (PlaylistForm);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        closeEdit: () => dispatch(finishPlaylistEdit())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (PlaylistForm);

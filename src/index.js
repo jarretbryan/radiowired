@@ -11,8 +11,9 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import usersReducer from './Reducers/UsersReducer';
 import quizReducer from './Reducers/QuizReducer';
 import playerReducer from './Reducers/PlayerReducer';
+import playlistReducer from './Reducers/PlaylistReducer';
 
-const coreReducer = combineReducers({usersReducer, quizReducer, playerReducer })
+const coreReducer = combineReducers({usersReducer, quizReducer, playerReducer, playlistReducer })
 
 const store = createStore(coreReducer, composeWithDevTools( applyMiddleware(thunk)))
 

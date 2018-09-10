@@ -22,6 +22,18 @@ export default class StreamAdapter {
         }).then(res => res.json())
     }
 
+    static edit_playlist(patchObj){
+        return fetch(`http://localhost:4000/api/v1/playlists/${patchObj.playlist_id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`
+            },
+            body: JSON.stringify(patchObj)
+        }).then(res => res.json())
+    }
+
     static get_episodes(streamId){
         return fetch(`http://localhost:4000/api/v1/play-episode`, {
             method: 'POST',
