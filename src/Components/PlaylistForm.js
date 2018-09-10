@@ -45,8 +45,9 @@ class PlaylistForm extends Component {
             StreamAdapter.post_playlist(submitObj)
             this.prepRedirect()
         } else {
-            StreamAdapter.edit_playlist(submitObj)
-            this.props.closeEdit()
+            StreamAdapter.edit_playlist(submitObj).then(() => { 
+                this.props.closeEdit()
+            } )
         }
     }
 
