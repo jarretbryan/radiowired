@@ -1,18 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {showPlayer, hidePlayer} from '../Actions/playerActions';
-import { Divider } from 'semantic-ui-react'
+import { Divider, Icon } from 'semantic-ui-react'
 
 
 const Stream = (props) => {
     if (props.visiblePlayer === false){
     return (<div>
         <h4>{props.stream.title}</h4>
-        <img onClick={() => props.showPlayer({
+        <img src={props.stream.thumbnail} alt={props.stream.title} /><br/>
+        <Icon color='blue' name="play" size="big" onClick={() => props.showPlayer({
             streamId: props.stream.ep_id,
-            thumbnail:props.stream.thumbnail,
+            thumbnail: props.stream.thumbnail,
             streamTitle: props.stream.title
-        })} src={props.stream.thumbnail} alt={props.stream.title} />
+        })}  />
         <p>{props.stream.description}</p>
     </div>)
     } else {
@@ -20,7 +21,8 @@ const Stream = (props) => {
             
             <Divider />
             <h3>{props.stream.title}</h3>
-            <img onClick={props.hidePlayer} src={props.stream.thumbnail} alt={props.stream.title} />
+            <img src={props.stream.thumbnail} alt={props.stream.title} /><br/>
+            <Icon color='red' size="big" name='stop circle' onClick={props.hidePlayer} />
             
             <p>{props.stream.description}</p>
         </div>)
