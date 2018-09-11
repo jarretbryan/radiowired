@@ -1,6 +1,6 @@
 
 import React, { Component, Fragment } from 'react';
-import {Container, Divider, Button } from 'semantic-ui-react'
+import {Container, Divider, Button, Message } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import UserAdapter from '../api/UserAdapter';
@@ -45,6 +45,13 @@ class FavoritesContainer extends Component {
                     <img src={radio} alt="loading!" />
                     <p> Checking</p>
                 </Fragment>
+            )
+        } else if (this.state.favorites.length === 0){
+            return(
+                    <Message info>
+                        <Message.Header> You don't have any favorites!</Message.Header>
+                        <p>Go back to your profile and make a playlist to discover some new ones!</p>
+                    </Message>
             )
         } else {
             return (

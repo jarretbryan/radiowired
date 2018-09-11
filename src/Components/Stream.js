@@ -5,6 +5,7 @@ import { Divider, Icon } from 'semantic-ui-react'
 
 
 const Stream = (props) => {
+
     if (props.visiblePlayer === false){
     return (<div>
         <h4>{props.stream.title}</h4>
@@ -14,7 +15,7 @@ const Stream = (props) => {
             thumbnail: props.stream.thumbnail,
             streamTitle: props.stream.title
         })}  />
-        <Icon color='red' size='large' name='heart outline' />
+        {props.user.subscriptions.includes(sub => sub.id === props.stream.ep_id) ? <Icon color='red' size='large' name='heart' /> : <Icon color='red' size='large' name='heart outline' /> }
         <p>{props.stream.description}</p>
     </div>)
     } else {
@@ -31,7 +32,8 @@ const Stream = (props) => {
 }
 
 
-const mapStateToProps = ({ playerReducer: { visiblePlayer, streamId, thumbnail, streamTitle }}) => ({
+const mapStateToProps = ({ usersReducer: {user}, playerReducer: { visiblePlayer, streamId, thumbnail, streamTitle }}) => ({
+    user,
     visiblePlayer,
     streamId,
     thumbnail,
