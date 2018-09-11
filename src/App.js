@@ -9,6 +9,7 @@ import Navbar from './Components/Navbar';
 import About from './Components/About';
 import Profile from './Components/Profile';
 import NonExistent from './Components/NonExistent';
+import FavoritesContainer from './Components/FavoritesContainer';
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path="/login" component={UserLogin} />
             <Route exact path="/quiz" component={Quiz} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/favorites" component={FavoritesContainer} />
           
           <Route component={NonExistent} />
           </Switch>

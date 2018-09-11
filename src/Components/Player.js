@@ -69,6 +69,7 @@ class Player extends Component {
                         src={this.state.audio} 
                         autoPlay
                         controls
+                        crossorigin="use-credentials"
                         />
                         <Divider />
 

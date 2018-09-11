@@ -53,7 +53,7 @@ class PlaylistForm extends Component {
 
     renderRedirect = () => {
         if (this.state.redirect===true){
-            return <Redirect to="quiz" />
+            return <Redirect to="/quiz" />
         }
     }
     

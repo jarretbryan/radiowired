@@ -5,7 +5,7 @@ import Player from './Player';
 import { Redirect } from 'react-router-dom'
 import PlaylistForm from './PlaylistForm';
 import AuthWrapper from '../HOComponents/AuthWrapper';
-import { Container, Divider, Card, Button, Image, Label, Segment } from 'semantic-ui-react'
+import { Container, Divider, Button, Icon, Label, Segment } from 'semantic-ui-react'
 import apiLogo from '../gifs/api-transparent background for white background.png';
 import githubLogo from '../gifs/GitHub-Mark-32px.png';
 
@@ -14,7 +14,20 @@ import githubLogo from '../gifs/GitHub-Mark-32px.png';
 class Profile extends Component {
 
     state = {
-        makingPlaylist: false
+        makingPlaylist: false,
+        redirect:false
+    }
+
+    prepRedirect = () => {
+        this.setState({
+            redirect: true
+        })
+    }
+
+    renderRedirect = () => {
+        if (this.state.redirect === true) {
+            return <Redirect to="/favorites" />
+        }
     }
 
     showNewPlaylistForm = () => {
@@ -55,8 +68,15 @@ class Profile extends Component {
             return <Redirect to="/" />
         } else {
             return (
-                <Container id='profile'>        
+                <Container id='profile'>  
                     <Button primary onClick={this.makeNewPlaylist}>Make a new Playlist!</Button>
+                    <Button as='div' labelPosition='right'> 
+                    <Button color='red' onClick={this.prepRedirect}><Icon name='heart' />See Favorites!</Button>
+                    <Label as='a' basic color='red' pointing='left'>
+                        {this.props.user.subscriptions.length}
+                     </Label>
+                    </Button>
+
 
                     {this.showAudioPlayer()}
                     {this.showNewPlaylistForm()}
@@ -82,6 +102,7 @@ class Profile extends Component {
     render() {
         return(
             <Container>
+                {this.renderRedirect()}
                 {this.showProfile()}
             </Container>
         )
