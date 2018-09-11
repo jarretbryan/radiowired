@@ -7,6 +7,7 @@ import UserAdapter from '../api/UserAdapter';
 import radio from '../gifs/Radio-1.2s-200px.gif';
 import Stream from './Stream';
 import AuthWrapper from '../HOComponents/AuthWrapper';
+import Player from './Player';
 
 
 
@@ -53,9 +54,13 @@ class FavoritesContainer extends Component {
         }
     }
 
-
-
-
+    showAudioPlayer = () => {
+        if (this.props.visiblePlayer === true) {
+            return <Player />
+        } else {
+            return null
+        }
+    }
 
     render() {
         return (
@@ -64,13 +69,15 @@ class FavoritesContainer extends Component {
                     <NavLink to='/profile'>Back to your profile!</NavLink>
                 </Button>
                 {this.showFavorites()}
+                {this.showAudioPlayer()}
             </Container>
         );
     }
 }
 
-const mapStateToProps = ({ usersReducer: { user }}) => ({
-    user
+const mapStateToProps = ({ usersReducer: { user }, playerReducer:{visiblePlayer}}) => ({
+    user,
+    visiblePlayer
 })
 
 export default AuthWrapper(connect(mapStateToProps)(FavoritesContainer));
