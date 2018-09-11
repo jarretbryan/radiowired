@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { getGenres } from '../Actions/index'
 import { NavLink, Redirect } from 'react-router-dom'
 import { Card, Divider, Grid, Container } from 'semantic-ui-react'
+import AuthWrapper from '../HOComponents/AuthWrapper';
+
 
 
 
@@ -159,4 +161,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect (mapStateToProps, mapDispatchToProps) (Quiz);
+export default AuthWrapper(connect(mapStateToProps, mapDispatchToProps) (Quiz));

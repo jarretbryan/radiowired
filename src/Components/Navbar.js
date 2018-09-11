@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { logoutUser } from '../Actions/index';
 import { Menu, Button, Search, Label, Image, Icon } from 'semantic-ui-react'
 import SearchBox from './SearchBox';
-
+// omitted searchBox because of time constraints
 
 
 class Navbar extends Component {
@@ -42,17 +42,17 @@ class Navbar extends Component {
     }
 
 
-    searchField = () => {
-        if (!!localStorage.loggedIn){
-            return(        
-                <Menu.Item position="right">    
-                    <SearchBox />
-                </Menu.Item>     
-            )
-        } else {
-            return null
-        }
-    }
+    // searchField = () => {
+    //     if (!!localStorage.loggedIn){
+    //         return(        
+    //             <Menu.Item position="right">    
+    //                 <SearchBox />
+    //             </Menu.Item>     
+    //         )
+    //     } else {
+    //         return null
+    //     }
+    // }
     
     logOut = () => {
             localStorage.clear()
@@ -74,7 +74,7 @@ class Navbar extends Component {
             <Menu.Item header> RadioWired </Menu.Item>
            
             {this.profileInfo()}
-            {this.searchField()}
+           
             <Menu.Item position='right'>
                 {this.logButton()}
             </Menu.Item>
