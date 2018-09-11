@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import UserAdapter from '../api/UserAdapter';
 import radio from '../gifs/Radio-1.2s-200px.gif';
 import Stream from './Stream';
+import AuthWrapper from '../HOComponents/AuthWrapper';
+
 
 
 
@@ -71,4 +73,4 @@ const mapStateToProps = ({ usersReducer: { user }}) => ({
     user
 })
 
-export default connect (mapStateToProps)(FavoritesContainer);
+export default AuthWrapper(connect(mapStateToProps)(FavoritesContainer));
