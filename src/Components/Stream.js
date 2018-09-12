@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {showPlayer, hidePlayer} from '../Actions/playerActions';
-import { Divider, Icon } from 'semantic-ui-react'
+import { Divider, Icon, Popup } from 'semantic-ui-react'
 import FavoriteAdapter from '../api/FavoriteAdapter';
 
 
@@ -11,6 +11,20 @@ const likeStream = (userId, subId) => {
     FavoriteAdapter.postFavorite({user_id: userId, subscription_id: subId })
 
     // maybe add action to change playlistReducer state justupdated to true - this should force rerender to change heart
+}
+
+const likeButton = (props) => {
+    if (!!props.user.subscriptions.filter(el => el.id === props.stream.id)[0]){
+        return <Icon color='red' size='large' name='heart' />
+    } else {
+        return( 
+            <Popup
+                trigger={<Icon color='red' size='large' name='heart outline' onClick={() => likeStream(props.user.id, props.stream.id)} />}
+                content={<p>Added to you favorites!</p>}
+                on='click'
+                position='top right'
+        />) 
+    }
 }
 
 
@@ -25,7 +39,7 @@ const Stream = (props) => {
             thumbnail: props.stream.thumbnail,
             streamTitle: props.stream.title
         })}  />
-        {props.user.subscriptions.includes(sub => sub.id === props.stream.ep_id) ? <Icon color='red' size='large' name='heart' /> : <Icon color='red' size='large' name='heart outline' onClick={() => likeStream(props.user.id, props.stream.id)} /> }
+        {likeButton(props)}
         <p>{props.stream.description}</p>
     </div>)
     } else {
