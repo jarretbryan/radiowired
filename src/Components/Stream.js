@@ -10,6 +10,7 @@ const likeStream = (userId, subId) => {
     // adapter to post and create favorite with user id and subscription id
     FavoriteAdapter.postFavorite({user_id: userId, subscription_id: subId })
    // maybe add action to change playlistReducer state justupdated to true - this should force rerender to change heart
+   // need way of knowing which favorite ID i have so that I can delete it - might need to change serializer on backend
 }
 
 const likeButton = (props) => {
