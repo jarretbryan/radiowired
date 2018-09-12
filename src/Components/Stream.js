@@ -1,14 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import {showPlayer, hidePlayer} from '../Actions/playerActions';
+import { finishPlaylistEdit, refreshPlaylists } from '../Actions/playlistActions';
+
 import { Divider, Icon, Popup } from 'semantic-ui-react'
 import FavoriteAdapter from '../api/FavoriteAdapter';
 
 
 
-const likeStream = (userId, subId) => {
+const likeStream = (userId, subId, props) => {
     // adapter to post and create favorite with user id and subscription id
-    FavoriteAdapter.postFavorite({user_id: userId, subscription_id: subId })
+    FavoriteAdapter.postFavorite({user_id: userId, subscription_id: subId }).then(props.finishPL()).then(props.refresh())
    // maybe add action to change playlistReducer state justupdated to true - this should force rerender to change heart
    // need way of knowing which favorite ID i have so that I can delete it - might need to change serializer on backend
 }
@@ -25,7 +27,7 @@ const likeButton = (props) => {
     } else {
         return( 
             <Popup
-                trigger={<Icon color='red' size='large' name='heart outline' onClick={() => likeStream(props.user.id, props.stream.id)} />}
+                trigger={<Icon color='red' size='large' name='heart outline' onClick={() => likeStream(props.user.id, props.stream.id, props)} />}
                 content={<p>Added to you favorites!</p>}
                 on='click'
                 position='top right'
@@ -62,12 +64,13 @@ const Stream = (props) => {
 }
 
 
-const mapStateToProps = ({ usersReducer: {user}, playerReducer: { visiblePlayer, streamId, thumbnail, streamTitle }}) => ({
+const mapStateToProps = ({ usersReducer: {user}, playerReducer: { visiblePlayer, streamId, thumbnail, streamTitle }, playlistReducer: {justUpdated}  }) => ({
     user,
     visiblePlayer,
     streamId,
     thumbnail,
-    streamTitle
+    streamTitle,
+    justUpdated
 })
 
 
@@ -75,7 +78,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         showPlayer: (num) => dispatch(showPlayer(num)),
         // // showAudio: () => dispatch(showPlayer()),
-        hidePlayer: () => dispatch(hidePlayer())
+        hidePlayer: () => dispatch(hidePlayer()),
+        finishPL: () => dispatch(finishPlaylistEdit()),
+        refresh: () => dispatch(refreshPlaylists())
     }
 }
 export default connect (mapStateToProps, mapDispatchToProps)(Stream)

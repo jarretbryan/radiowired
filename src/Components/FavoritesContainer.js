@@ -8,6 +8,7 @@ import radio from '../gifs/Radio-1.2s-200px.gif';
 import Stream from './Stream';
 import AuthWrapper from '../HOComponents/AuthWrapper';
 import Player from './Player';
+import { refreshPlaylists } from '../Actions/playlistActions';
 
 
 
@@ -24,7 +25,15 @@ class FavoritesContainer extends Component {
         this.loadFavorites()
     }
 
+    componentDidUpdate() {
+        if (this.props.justUpdated === true) {
+            this.loadFavorites()
+            this.props.refresh()
+        }
+    }
+
     loadFavorites = () => {
+        debugger;
         UserAdapter.getUser(this.props.user.id).then(res => this.setState({
             loadingFavorites: false,
             favorites: res.subscriptions
@@ -82,9 +91,16 @@ class FavoritesContainer extends Component {
     }
 }
 
-const mapStateToProps = ({ usersReducer: { user }, playerReducer:{visiblePlayer}}) => ({
+const mapStateToProps = ({ usersReducer: { user }, playerReducer:{visiblePlayer}, playlistReducer:{justUpdated}   }) => ({
     user,
-    visiblePlayer
+    visiblePlayer,
+    justUpdated
 })
 
-export default AuthWrapper(connect(mapStateToProps)(FavoritesContainer));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        refresh: () => dispatch(refreshPlaylists())
+    }
+}
+
+export default AuthWrapper(connect(mapStateToProps, mapDispatchToProps)(FavoritesContainer));

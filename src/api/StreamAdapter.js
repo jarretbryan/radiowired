@@ -24,7 +24,7 @@ export default class StreamAdapter {
 
     static edit_playlist(patchObj){
         return fetch(`http://localhost:4000/api/v1/playlists/${patchObj.playlist_id}`, {
-            method: 'PATCH',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
