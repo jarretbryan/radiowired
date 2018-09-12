@@ -3,7 +3,7 @@ import Stream from './Stream';
 import StreamAdapter from '../api/StreamAdapter';
 import { connect } from 'react-redux';
 import {editPlaylist, finishPlaylistEdit, refreshPlaylists} from '../Actions/playlistActions';
-import { Card, Divider, Button, Form } from 'semantic-ui-react'
+import { Card, Divider, Button } from 'semantic-ui-react'
 import PlaylistForm from './PlaylistForm';
 
 
@@ -15,7 +15,6 @@ class Playlist extends Component {
     }
 
     componentDidMount(){
-        // console.log(this.props)
         this.getSubs()
     }
 
@@ -48,11 +47,8 @@ class Playlist extends Component {
         if (this.props.isEditing === true && this.props.id === this.props.playlist.id){
             return (<Card color={this.getRandomColor(this.state.colors)} fluid>
                 <PlaylistForm playlistID={this.props.playlist.id} />
-
                 {this.mapSubs()}
-
-            </Card >       
-            );
+            </Card >);
         } else {
             return( 
                 <Card color={this.getRandomColor(this.state.colors)} fluid>
