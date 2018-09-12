@@ -32,9 +32,6 @@ class UserAdapter {
         return fetch('http://localhost:4000/api/v1/auth/register', postConfig).then(res => res.json())
     }
 
-    // static deleteUser(userId) {
-    //     return fetch(`http://localhost:4000/api/v1/users/${userId}`, { method: 'DELETE' })
-    // }
 }
 
 export default UserAdapter

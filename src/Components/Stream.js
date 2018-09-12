@@ -2,6 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux';
 import {showPlayer, hidePlayer} from '../Actions/playerActions';
 import { Divider, Icon } from 'semantic-ui-react'
+import FavoriteAdapter from '../api/FavoriteAdapter';
+
+
+
+const likeStream = (userId, subId) => {
+    // adapter to post and create favorite with user id and subscription id
+    FavoriteAdapter.postFavorite({user_id: userId, subscription_id: subId })
+
+    // maybe add action to change playlistReducer state justupdated to true - this should force rerender to change heart
+}
 
 
 const Stream = (props) => {
@@ -15,7 +25,7 @@ const Stream = (props) => {
             thumbnail: props.stream.thumbnail,
             streamTitle: props.stream.title
         })}  />
-        {props.user.subscriptions.includes(sub => sub.id === props.stream.ep_id) ? <Icon color='red' size='large' name='heart' /> : <Icon color='red' size='large' name='heart outline' /> }
+        {props.user.subscriptions.includes(sub => sub.id === props.stream.ep_id) ? <Icon color='red' size='large' name='heart' /> : <Icon color='red' size='large' name='heart outline' onClick={() => likeStream(props.user.id, props.stream.id)} /> }
         <p>{props.stream.description}</p>
     </div>)
     } else {
