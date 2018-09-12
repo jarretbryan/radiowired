@@ -7,7 +7,7 @@ import PlaylistForm from './PlaylistForm';
 import AuthWrapper from '../HOComponents/AuthWrapper';
 import { Container, Divider, Button, Icon, Label, Segment } from 'semantic-ui-react'
 import apiLogo from '../gifs/api-transparent background for white background.png';
-import githubLogo from '../gifs/GitHub-Mark-32px.png';
+
 
 
 
@@ -79,7 +79,6 @@ class Profile extends Component {
                      </Label>
                     </Button>
 
-
                     {this.showAudioPlayer()}
                     {this.showNewPlaylistForm()}
 
@@ -97,8 +96,7 @@ class Profile extends Component {
              );
         }
     }
-
-    
+   
     render() {
         return(
             <Container>
