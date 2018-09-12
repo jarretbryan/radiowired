@@ -28,7 +28,7 @@ const likeButton = (props) => {
         return( 
             <Popup
                 trigger={<Icon color='red' size='large' name='heart outline' onClick={() => likeStream(props.user.id, props.stream.id, props)} />}
-                content={<p>Added to you favorites!</p>}
+                content={<p>Added to your favorites!</p>}
                 on='click'
                 position='top right'
         />) 
