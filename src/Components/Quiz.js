@@ -71,7 +71,7 @@ class Quiz extends Component {
         let submitObj = {
             selectedGenres: this.state.selectedGenres,
             user_id: this.props.user.id,
-            list_length: parseInt(this.state.listLength)
+            list_length: parseInt(this.state.listLength, 10)
         }
         GenreAdapter.postGenre(submitObj)
         .then( () => {
@@ -137,7 +137,7 @@ class Quiz extends Component {
                 </Container>
                 <Segment>
                     <Label as='a' image>
-                        <img src={apiLogo} />
+                        <img src={apiLogo} alt="ListenNotes" />
                         <Label.Detail>Made with ♥️ at the Flatiron School</Label.Detail>
                     </Label>
                 </Segment>
