@@ -9,13 +9,18 @@ import FavoriteAdapter from '../api/FavoriteAdapter';
 const likeStream = (userId, subId) => {
     // adapter to post and create favorite with user id and subscription id
     FavoriteAdapter.postFavorite({user_id: userId, subscription_id: subId })
-
-    // maybe add action to change playlistReducer state justupdated to true - this should force rerender to change heart
+   // maybe add action to change playlistReducer state justupdated to true - this should force rerender to change heart
 }
 
 const likeButton = (props) => {
     if (!!props.user.subscriptions.filter(el => el.id === props.stream.id)[0]){
-        return <Icon color='red' size='large' name='heart' />
+        return (
+            <Popup
+                trigger={<Icon color='red' size='large' name='heart' onClick={console.log} /> }
+                content={<p>Unliked!</p>}
+                on='click'
+                position='top right'
+            /> ) 
     } else {
         return( 
             <Popup
