@@ -88,7 +88,7 @@ class FavoritesContainer extends Component {
                 {this.showAudioPlayer()}
                 <Segment>
                     <Label as='a' image>
-                        <img src={apiLogo} />
+                        <img src={apiLogo} alt="ListenNotes"/>
                         <Label.Detail>Made with ♥️ at the Flatiron School</Label.Detail>
                     </Label>
                 </Segment>
