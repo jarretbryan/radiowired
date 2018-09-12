@@ -30,9 +30,6 @@ class UserLogin extends Component {
     }
 
     showError = () => {
-        const redText = {
-            color:'red'
-        }
         if (!!this.props.error){
             return (
             <Message negative>
@@ -66,7 +63,6 @@ class UserLogin extends Component {
                 <h3>Don't have a login?</h3>    
                 <NavLink to='register'>Sign Up Here</NavLink>
                 
-
             </Container>)
         }
     }
@@ -75,14 +71,11 @@ class UserLogin extends Component {
     render() {
         return (
             <Fragment>
-
-           {this.showLogin()}
-
+                {this.showLogin()}
             </Fragment>
         );
     }
 }
-
 
 const mapStateToProps = ({ usersReducer: { user, loggedIn, authenticated, loginSuccess, error } }) => ({
     user,
@@ -91,9 +84,6 @@ const mapStateToProps = ({ usersReducer: { user, loggedIn, authenticated, loginS
     loginSuccess,
     error
 })
-
-
-
 
 // export default connect(UserLogin);
 export default connect(mapStateToProps, {loginUser})(UserLogin)
