@@ -15,11 +15,18 @@ const likeStream = (userId, subId, props) => {
    // need way of knowing which favorite ID i have so that I can delete it - might need to change serializer on backend
 }
 
+const unlikeStream = (props) => {
+
+    let favorite = props.user.favorites.filter(el => el.subscription_id === props.stream.id)
+    let num = favorite[0].id
+    FavoriteAdapter.deleteFavorite(num)
+}
+
 const likeButton = (props) => {
     if (!!props.user.subscriptions.filter(el => el.id === props.stream.id)[0]){
         return (
             <Popup
-                trigger={<Icon color='red' size='large' name='heart' onClick={console.log} /> }
+                trigger={<Icon color='red' size='large' name='heart' onClick={() => unlikeStream(props)} /> }
                 content={<p>Unliked!</p>}
                 on='click'
                 position='top right'
