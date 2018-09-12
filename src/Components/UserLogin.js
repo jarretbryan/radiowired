@@ -63,11 +63,9 @@ class UserLogin extends Component {
                 </Form>
                 <Divider />
 
-                <h3>Don't have a login?</h3>
-
-                <Button>
-                    <NavLink to='register'>Sign Up Here</NavLink>
-                </Button>
+                <h3>Don't have a login?</h3>    
+                <NavLink to='register'>Sign Up Here</NavLink>
+                
 
             </Container>)
         }

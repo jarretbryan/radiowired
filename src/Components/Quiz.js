@@ -3,9 +3,9 @@ import GenreAdapter from '../api/GenreAdapter';
 import { connect } from 'react-redux';
 import { getGenres } from '../Actions/index'
 import { NavLink, Redirect } from 'react-router-dom'
-import { Card, Divider, Grid, Container } from 'semantic-ui-react'
+import { Card, Divider, Grid, Container, Form, Button, Segment, Label } from 'semantic-ui-react'
 import AuthWrapper from '../HOComponents/AuthWrapper';
-
+import apiLogo from '../gifs/api-transparent background for white background.png';
 
 
 
@@ -74,31 +74,17 @@ class Quiz extends Component {
             list_length: parseInt(this.state.listLength)
         }
         GenreAdapter.postGenre(submitObj)
-        // .then(res=>{
-        //     console.log(res)
-        //     return res
-        // })
-        // .then(this.prepRedirect())
-        // .then(() => this.prepRedirect())
         .then( () => {
             // debugger;
             this.setState({
             redirect:true
         })}  ) 
-        // this.props.history.push('/profile')
-        
-        
-        // i need to post the array as a key in the body of my post request
-        // on the frontend the post can be done with genreAdapter
-        
-        // on the backend the route needs to be to a listen notes controller - at which point a method will be triggered to call best podcasts of that genre, and return a sample, save the stream data, and return that - this route will take in the array of numbers of genres, and this.props.user.id to know which user_id to make the playlist for
-
     }
 
     genreMap = () => {
         return this.props.genres.map(genreObj => {
             return (
-                // <li key={genreObj.id}>
+               
                 <Card key={genreObj.id} color='olive' >
                     <Card.Content>
                         <Grid columns={2} relaxed>
@@ -113,7 +99,7 @@ class Quiz extends Component {
                             </Grid.Column>                   
                         </Grid>
                     </Card.Content>
-                {/* </li> */}
+           
                 </Card>
             )
         } )
@@ -126,8 +112,9 @@ class Quiz extends Component {
                 <NavLink to='/profile'>Back to your profile!</NavLink>
                 {this.renderRedirect()}
                 <Container>
-                    <h1>What do you feel like getting</h1>
-                    <form onSubmit={this.handleSubmit}>
+                    <h1>What do you feel like listening to?</h1>
+                    <Form onSubmit={this.handleSubmit}>
+                    <Form.Field>
                     <label htmlFor="numOfCasts">How many podcasts would you like in your playlist? (1-5)</label><br/>
                     <select id="numOfCasts" value={this.state.listLength} onChange={this.handleDrop} required>
                         <option value="" selected disabled hidden >Choose here</option>
@@ -137,14 +124,23 @@ class Quiz extends Component {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
+                    </Form.Field>
                     <Divider />
-                        <Card.Group>
+                    
+                        <Card.Group centered>
                             {this.genreMap()}
                         </Card.Group>
+                    
                     <Divider />
-                        <input type="submit" value="PODCAST ME UP BABY" />
-                    </form>
+                    <Button inverted color="green" position="right" type='submit'>Give me my Recommendations!</Button>
+                    </Form>
                 </Container>
+                <Segment>
+                    <Label as='a' image>
+                        <img src={apiLogo} />
+                        <Label.Detail>Made with ♥️ at the Flatiron School</Label.Detail>
+                    </Label>
+                </Segment>
             </Fragment>
         );
     }

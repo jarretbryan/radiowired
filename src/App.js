@@ -10,6 +10,21 @@ import About from './Components/About';
 import Profile from './Components/Profile';
 import NonExistent from './Components/NonExistent';
 import FavoritesContainer from './Components/FavoritesContainer';
+import { Segment, Label } from 'semantic-ui-react'
+import apiLogo from '../src/gifs/api-transparent background for white background.png';
+
+
+const styles = {
+  // #footer
+  footerId: {
+    position: "absolute",
+    bottom: "0",
+    width: "100%",
+    height: "60px",
+    HeightOfTheFooterBackground: "#6cf"
+  }
+}
+
 
 class App extends Component {
   render() {

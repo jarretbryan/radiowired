@@ -13,16 +13,16 @@ class Navbar extends Component {
         if (!localStorage.loggedIn){
             return(
                
-                    <Button basic >
+                    <Label size="large" color="black">
                         <NavLink to='/login'>Login</NavLink>
-                    </Button> 
+                    </Label> 
             ) 
         } else {
-            return <Button basic onClick={this.logOut}> 
+            return <Label size="large" color="black" onClick={this.logOut}> 
                 <NavLink to='/' >
                     LogOut
                 </NavLink>
-            </Button>
+            </Label>
         }
     }
 

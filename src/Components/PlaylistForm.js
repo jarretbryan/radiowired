@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
-import { NavLink, Redirect } from 'react-router-dom' 
+import { Redirect } from 'react-router-dom' 
 import { connect } from 'react-redux';
 import StreamAdapter from '../api/StreamAdapter';
 import { finishPlaylistEdit } from '../Actions/playlistActions';
+import { Container, Button, Form, Divider, Message, Card } from 'semantic-ui-react'
 
 class PlaylistForm extends Component {
     
@@ -60,20 +61,21 @@ class PlaylistForm extends Component {
  
     render() {
         return (
-            <Fragment>
+            <Container>
                 {this.renderRedirect()}
-                <form id="playlistForm" onSubmit={this.handleSubmit}>
+                <Form id="playlistForm" onSubmit={this.handleSubmit}>
+                <Form.Field>
                     <label htmlFor="title-input">Name Your Playlist!</label> <br />
-                    <input type="text" id="title-input" name="title" value={this.state.title} placeholder="e.g. 'stuff i should learn' " onChange={this.handleChange} required /> <br />
+                    <input type="text" id="title-input" name="title" value={this.state.title} placeholder="e.g. 'stuff i should learn' " onChange={this.handleChange} required />
+                </Form.Field>
+                <Form.Field>
                     <label htmlFor="desc-input">Write a description for your playlist!</label><br />
-                    <input type="description" id="desc-input" name="description" value={this.state.description} placeholder=" 'podcasts about stuff i should learn' " onChange={this.handleChange} required /><br />
+                    <input type="text" id="desc-input" name="description" value={this.state.description} placeholder=" 'podcasts about stuff i should learn' " onChange={this.handleChange} required />
+                </Form.Field>
+                <Button inverted color="green" position="right" type='submit'>Go!</Button>
+                </Form>
 
-
-
-                    <input type="submit" />  <br />
-                </form>
-
-            </Fragment>
+            </Container>
         );
     }
 }

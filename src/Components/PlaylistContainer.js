@@ -39,9 +39,9 @@ class PlaylistContainer extends Component {
             loadingsPlaylists: false,
             playlists: res.playlists.sort((el1, el2) => {
                 if (el1.created_at < el2.created_at)
-                    return -1;
-                if (el1.created_at > el2.created_at )
                     return 1;
+                if (el1.created_at > el2.created_at )
+                    return -1;
                 return 0    
             })
         }))

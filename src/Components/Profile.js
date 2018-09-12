@@ -35,7 +35,8 @@ class Profile extends Component {
             return (
                 <Fragment>
                     <PlaylistForm />
-                    <Button onClick={this.hidePlaylistForm}>X</Button>
+                    <br/>
+                    <Button compact onClick={this.hidePlaylistForm}>close</Button>
                 </Fragment>
             )
         } else {
@@ -68,6 +69,7 @@ class Profile extends Component {
             return <Redirect to="/" />
         } else {
             return (
+            <Fragment>
                 <Container id='profile'>  
                     <Button primary onClick={this.makeNewPlaylist}>Make a new Playlist!</Button>
                     <Button as='div' labelPosition='right'> 
@@ -83,17 +85,15 @@ class Profile extends Component {
 
                     <Divider />
 
-                    <PlaylistContainer />
+                    <PlaylistContainer />         
+                </Container>
                     <Segment>
                         <Label as='a' image>
                             <img src={apiLogo} />
                             <Label.Detail>Made with ♥️ at the Flatiron School</Label.Detail>
                         </Label>
-                   
-
                     </Segment>
-
-                </Container>
+            </Fragment>
              );
         }
     }

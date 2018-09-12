@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Container, Header, Button } from 'semantic-ui-react'
+import { Container, Header, Label } from 'semantic-ui-react'
 
 
 
@@ -12,9 +12,10 @@ const About = () => (
 
         <p>This is a podcast curation app. Choose some genres, get some podcasts.</p>
        
-         <Button>
+         <Label size="big" color="blue">
             <NavLink to='register'>Sign Up Here</NavLink>
-        </Button>
+         </Label>
+        
 
         
 

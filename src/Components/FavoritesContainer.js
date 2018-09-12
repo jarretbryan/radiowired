@@ -1,6 +1,6 @@
 
 import React, { Component, Fragment } from 'react';
-import {Container, Divider, Button, Message } from 'semantic-ui-react'
+import {Container, Divider, Segment, Message, Label } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import UserAdapter from '../api/UserAdapter';
@@ -9,6 +9,7 @@ import Stream from './Stream';
 import AuthWrapper from '../HOComponents/AuthWrapper';
 import Player from './Player';
 import { refreshPlaylists } from '../Actions/playlistActions';
+import apiLogo from '../gifs/api-transparent background for white background.png';
 
 
 
@@ -33,7 +34,6 @@ class FavoritesContainer extends Component {
     }
 
     loadFavorites = () => {
-        debugger;
         UserAdapter.getUser(this.props.user.id).then(res => this.setState({
             loadingFavorites: false,
             favorites: res.subscriptions
@@ -81,11 +81,17 @@ class FavoritesContainer extends Component {
     render() {
         return (
             <Container>
-                <Button color='yellow'>
+                <Label color='yellow'>
                     <NavLink to='/profile'>Back to your profile!</NavLink>
-                </Button>
+                </Label>
                 {this.showFavorites()}
                 {this.showAudioPlayer()}
+                <Segment>
+                    <Label as='a' image>
+                        <img src={apiLogo} />
+                        <Label.Detail>Made with ♥️ at the Flatiron School</Label.Detail>
+                    </Label>
+                </Segment>
             </Container>
         );
     }
