@@ -1,30 +1,14 @@
-import React, { Component, Fragment } from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
+import React, { Component } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom'
 import './App.css';
 import UserRegister from './Components/UserRegister';
 import Quiz from './Components/Quiz';
-import PlaylistContainer from './Components/PlaylistContainer';
 import UserLogin from './Components/UserLogin';
 import Navbar from './Components/Navbar';
 import About from './Components/About';
 import Profile from './Components/Profile';
 import NonExistent from './Components/NonExistent';
 import FavoritesContainer from './Components/FavoritesContainer';
-import { Segment, Label } from 'semantic-ui-react'
-import apiLogo from '../src/gifs/api-transparent background for white background.png';
-
-
-const styles = {
-  // #footer
-  footerId: {
-    position: "absolute",
-    bottom: "0",
-    width: "100%",
-    height: "60px",
-    HeightOfTheFooterBackground: "#6cf"
-  }
-}
-
 
 class App extends Component {
   render() {
@@ -32,18 +16,13 @@ class App extends Component {
     
       <div className="App">
           <Navbar />
-          <Switch>
-            
+          <Switch>           
           <Route exact path="/" component={About} />
-
-            <Route exact path="/register" component={UserRegister} />
-
-          
-            <Route exact path="/login" component={UserLogin} />
-            <Route exact path="/quiz" component={Quiz} />
+          <Route exact path="/register" component={UserRegister} />         
+          <Route exact path="/login" component={UserLogin} />
+          <Route exact path="/quiz" component={Quiz} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/favorites" component={FavoritesContainer} />
-          
+          <Route exact path="/favorites" component={FavoritesContainer} />     
           <Route component={NonExistent} />
           </Switch>
       </div>

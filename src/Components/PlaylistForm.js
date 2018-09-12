@@ -1,9 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom' 
 import { connect } from 'react-redux';
 import StreamAdapter from '../api/StreamAdapter';
 import { finishPlaylistEdit } from '../Actions/playlistActions';
-import { Container, Button, Form, Divider, Message, Card } from 'semantic-ui-react'
+import { Container, Button, Form } from 'semantic-ui-react'
 
 class PlaylistForm extends Component {
     
@@ -38,7 +38,8 @@ class PlaylistForm extends Component {
         event.preventDefault()
         const submitObj = {
             title: this.state.title,
-            description: this.state.description,            user_id: this.props.user.id,
+            description: this.state.description, 
+            user_id: this.props.user.id, 
             playlist_id: this.props.playlistID
         }
 
@@ -74,7 +75,6 @@ class PlaylistForm extends Component {
                 </Form.Field>
                 <Button inverted color="green" position="right" type='submit'>Go!</Button>
                 </Form>
-
             </Container>
         );
     }
