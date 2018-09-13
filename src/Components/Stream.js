@@ -9,10 +9,13 @@ import FavoriteAdapter from '../api/FavoriteAdapter';
 
 
 const likeStream = (userId, subId, props) => {
-    // adapter to post and create favorite with user id and subscription id
-    FavoriteAdapter.postFavorite({user_id: userId, subscription_id: subId }).then(props.finishPL()).then(props.refresh())
-   // maybe add action to change playlistReducer state justupdated to true - this should force rerender to change heart
-   // need way of knowing which favorite ID i have so that I can delete it - might need to change serializer on backend
+    if (props.user.subscriptions.filter(el => el.id === subId).length === 0){
+        FavoriteAdapter.postFavorite({user_id: userId, subscription_id: subId }).then(props.finishPL()).then(props.refresh())
+    } else {
+        console.log('already liked!')
+    }
+        
+   // attempting to prevent duplicate likes - no dice
 }
 
 const unlikeStream = (props) => {
