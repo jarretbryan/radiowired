@@ -62,7 +62,7 @@ class Stream extends Component {
             streamTitle: this.props.stream.title
         })}  />
         {this.likeButton(this.props)}
-        <p>{this.props.stream.description}</p>
+        <p dangerouslySetInnerHTML={{__html: this.props.stream.description}}></p>
     </div>)
     } else {
         return (<div>

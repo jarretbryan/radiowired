@@ -61,8 +61,7 @@ class Player extends Component {
                         crossorigin="use-credentials"
                         />
                 <Divider />
-
-                    <p>{this.state.description}</p>
+                    <p dangerouslySetInnerHTML={{__html: this.state.description}}></p>
                 </Menu.Item>
      
                <Menu.Item>
