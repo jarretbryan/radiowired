@@ -7,7 +7,7 @@ RadioWired is built with React & Redux, and styled using React-Semantic-UI. The 
 
 [Live (coming soon!)]()
 
-[Video (coming soon!)]()
+[Video](https://youtu.be/eZ6ugaf7MTA)
 
 RadioWired was built over the course of 16 days at the Flatiron School. 
 

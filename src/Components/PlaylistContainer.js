@@ -69,9 +69,9 @@ class PlaylistContainer extends Component {
         )
         } else {
             return (
-            <Fragment>
-                {this.mapPlaylists()}
-            </Fragment>)
+                <Fragment>
+                    {this.mapPlaylists()}
+                </Fragment>)
         }
     }
  
