@@ -1,7 +1,7 @@
 export const loginUser = (email, password) => {
     return dispatch => {
         dispatch(authenticatingUser())
-        fetch('http://localhost:4000/api/v1/login', {
+        fetch('https://shielded-everglades-42112.herokuapp.com/api/v1/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const fetchCurrentUser = () => {
     // takes the token in localStorage and finds out who it belongs to
     return dispatch => {
         
-        fetch('http://localhost:4000/api/v1/profile', {
+        fetch('https://shielded-everglades-42112.herokuapp.com/api/v1/profile', {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
