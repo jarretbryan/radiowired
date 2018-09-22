@@ -1,7 +1,7 @@
 export default class GenreAdapter {
 
     static index() {
-        const genre_URL = `http://localhost:4000/api/v1/genre`
+        const genre_URL = `https://shielded-everglades-42112.herokuapp.com/api/v1/genre`
         
         return fetch(genre_URL, {
             method: 'GET',
@@ -11,7 +11,7 @@ export default class GenreAdapter {
     }
 
     static postGenre(obj){
-        const genre_URL = `http://localhost:4000/api/v1/quizresults`
+        const genre_URL = `https://shielded-everglades-42112.herokuapp.com/api/v1/quizresults`
 
         return fetch(genre_URL, {
             method: 'POST',

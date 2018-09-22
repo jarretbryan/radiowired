@@ -2,7 +2,7 @@ export default class StreamAdapter {
 
     static stream_index(num) {
         
-        return fetch(`http://localhost:4000/api/v1/playlists/${num}`, {
+        return fetch(`https://shielded-everglades-42112.herokuapp.com/api/v1/playlists/${num}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
@@ -11,7 +11,7 @@ export default class StreamAdapter {
     }
 
     static post_playlist(postObj) {
-        return fetch(`http://localhost:4000/api/v1/playlists`, {
+        return fetch(`https://shielded-everglades-42112.herokuapp.com/api/v1/playlists`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export default class StreamAdapter {
     }
 
     static edit_playlist(patchObj){
-        return fetch(`http://localhost:4000/api/v1/playlists/${patchObj.playlist_id}`, {
+        return fetch(`https://shielded-everglades-42112.herokuapp.com/api/v1/playlists/${patchObj.playlist_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ export default class StreamAdapter {
     }
 
     static delete_playlist(num){
-        return fetch(`http://localhost:4000/api/v1/playlists/${num}`, {
+        return fetch(`https://shielded-everglades-42112.herokuapp.com/api/v1/playlists/${num}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default class StreamAdapter {
     }
 
     static get_episodes(streamId){
-        return fetch(`http://localhost:4000/api/v1/play-episode`, {
+        return fetch(`https://shielded-everglades-42112.herokuapp.com/api/v1/play-episode`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export default class StreamAdapter {
     }
 
     static delete_episodes(){
-        return fetch(`http://localhost:4000/api/v1/delete-episode`, {
+        return fetch(`https://shielded-everglades-42112.herokuapp.com/api/v1/delete-episode`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

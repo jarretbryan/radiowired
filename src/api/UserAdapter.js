@@ -17,7 +17,7 @@ class UserAdapter {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
             }
         }
-        return fetch(`http://localhost:4000/api/v1/users/${num}`, postConfig).then(res => res.json())
+        return fetch(`https://shielded-everglades-42112.herokuapp.com/api/v1/users/${num}`, postConfig).then(res => res.json())
     }
 
     static postUser(userObj) {
@@ -29,7 +29,7 @@ class UserAdapter {
             },
             body: JSON.stringify(userObj)
         }
-        return fetch('http://localhost:4000/api/v1/auth/register', postConfig).then(res => res.json())
+        return fetch('https://shielded-everglades-42112.herokuapp.com/api/v1/auth/register', postConfig).then(res => res.json())
     }
 
 }

@@ -12,7 +12,7 @@ class FavoriteAdapter {
             },
             body: JSON.stringify(favObj)
         }
-        return fetch('http://localhost:4000/api/v1/favorites', postConfig)
+        return fetch('https://shielded-everglades-42112.herokuapp.com/api/v1/favorites', postConfig)
     }
 
 
@@ -25,7 +25,7 @@ class FavoriteAdapter {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`
             }
         }
-        return fetch(`http://localhost:4000/api/v1/favorites/${num}`, delConfig)
+        return fetch(`https://shielded-everglades-42112.herokuapp.com/api/v1/favorites/${num}`, delConfig)
     }
 
 }
