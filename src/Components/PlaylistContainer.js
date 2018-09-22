@@ -21,7 +21,7 @@ class PlaylistContainer extends Component {
     }
 
     componentDidUpdate(){
-        console.log('playlist updated')
+        // console.log('playlist updated')
         if (this.props.justUpdated === true){
             console.log(this.props.justUpdated)
             this.loadPlaylists()
@@ -30,7 +30,7 @@ class PlaylistContainer extends Component {
     }
 
     loadPlaylists = () =>{
-        console.log('refreshing...')
+        // console.log('refreshing...')
         UserAdapter.getUser(this.props.user.id).then(res => this.setState({
             loadingsPlaylists: false,
             subscriptions: res.subscriptions,
