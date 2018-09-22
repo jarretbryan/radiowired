@@ -33,14 +33,13 @@ class Stream extends Component {
             .then(() => {this.props.finishPL()})
         } else {
             // debugger;
-            let favorite = this.props.subscriptions.filter(el => el.id === this.props.stream.id)
+            let favorite = this.props.favorites.filter(el => el.subscription_id === this.props.stream.id)
             // debugger;
             let num = favorite[0].id
             
-            let fav_num = this.props.user.favorites.filter(el => el.subscription_id === num)[0].id
+            // let fav_num = this.props.user.favorites.filter(el => el.subscription_id === num)[0].id
 
-
-            FavoriteAdapter.deleteFavorite(fav_num).then(this.setState({
+            FavoriteAdapter.deleteFavorite(num).then(this.setState({
                 heartStatus: 'heart outline',
                 message: 'Removed from Favorites!'
             }))

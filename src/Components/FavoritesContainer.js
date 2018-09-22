@@ -19,6 +19,7 @@ class FavoritesContainer extends Component {
 
     state = {
         loadingFavorites: true,
+        subscriptions: [],
         favorites: []
     }
 
@@ -36,14 +37,15 @@ class FavoritesContainer extends Component {
     loadFavorites = () => {
         UserAdapter.getUser(this.props.user.id).then(res => this.setState({
             loadingFavorites: false,
-            favorites: res.subscriptions
+            subscriptions: res.subscriptions,
+            favorites: res.favorites
         }))
     }
 
     mapFavorites = () => {
-        let favs = this.state.favorites
+        let favs = this.state.subscriptions
         return favs.map(
-            fav => <Fragment key={fav.id}> <Divider /> <Stream key={fav.id} stream={fav} subscriptions={this.state.favorites}/>  </Fragment>
+            fav => <Fragment key={fav.id}> <Divider /> <Stream key={fav.id} stream={fav} subscriptions={this.state.subscriptions} favorites={this.state.favorites} />  </Fragment>
         )
     }
 
@@ -55,7 +57,7 @@ class FavoritesContainer extends Component {
                     <p> Checking</p>
                 </Fragment>
             )
-        } else if (this.state.favorites.length === 0){
+        } else if (this.state.subscriptions.length === 0){
             return(
                     <Message info>
                         <Message.Header> You don't have any favorites!</Message.Header>

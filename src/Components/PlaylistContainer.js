@@ -12,7 +12,8 @@ class PlaylistContainer extends Component {
     state = {
         loadingsPlaylists: true,
         playlists: [],
-        subscriptions:[]
+        subscriptions:[],
+        favorites:[]
     }
 
 
@@ -34,6 +35,7 @@ class PlaylistContainer extends Component {
         UserAdapter.getUser(this.props.user.id).then(res => this.setState({
             loadingsPlaylists: false,
             subscriptions: res.subscriptions,
+            favorites: res.favorites,
             playlists: res.playlists.sort((el1, el2) => {
                 if (el1.created_at < el2.created_at)
                     return 1;
@@ -50,7 +52,7 @@ class PlaylistContainer extends Component {
         return userPlaylistArr.map(
             playlist => <Grid.Column key={playlist.id} >
             <Card.Group>
-                <Playlist key={playlist.id} playlist={playlist} subscriptions={this.state.subscriptions} /> 
+                <Playlist key={playlist.id} playlist={playlist} subscriptions={this.state.subscriptions} favorites={this.state.favorites} /> 
             </Card.Group>
             </Grid.Column> 
         )
