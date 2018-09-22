@@ -5,7 +5,7 @@ RadioWired is a podcast discovery application. Not sure what to listen to next? 
 RadioWired is built with React & Redux, and styled using React-Semantic-UI. The database is maintained by a Rails backend API ([here](https://github.com/jarretbryan/RadioWired-backend)) using the MVC design pattern. RadioWired is powered by the ListenNotes API, and user authentication is managed with JSON Web Tokens.
 
 
-[Live (coming soon!)]()
+[Live](https://radiowired.surge.sh/)
 
 [Video](https://youtu.be/eZ6ugaf7MTA)
 
