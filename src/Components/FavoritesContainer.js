@@ -43,7 +43,7 @@ class FavoritesContainer extends Component {
     mapFavorites = () => {
         let favs = this.state.favorites
         return favs.map(
-            fav => <Fragment key={fav.id}> <Divider /> <Stream key={fav.id} stream={fav} />  </Fragment>
+            fav => <Fragment key={fav.id}> <Divider /> <Stream key={fav.id} stream={fav} subscriptions={this.state.favorites}/>  </Fragment>
         )
     }
 

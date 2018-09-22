@@ -31,7 +31,7 @@ class Playlist extends Component {
     
 
     mapSubs = () => {
-        return this.state.subscriptions.map(stream => <Fragment key={stream.id}><Divider /> <Stream key={stream.id} stream={stream} /></Fragment>)
+        return this.state.subscriptions.map(stream => <Fragment key={stream.id}><Divider /> <Stream key={stream.id} stream={stream} subscriptions={this.props.subscriptions} /></Fragment>)
     }
 
     handleEditClick = () => {

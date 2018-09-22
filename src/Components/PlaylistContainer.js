@@ -7,19 +7,12 @@ import { Grid, Card } from 'semantic-ui-react'
 import { refreshPlaylists } from '../Actions/playlistActions';
 
 
-
-// for the sake of the first draft, where we don't have a user in store, i will need to fake seed data somewhere so we know which user to render.
-
-// after we refactor and have a user in state, then this will just pull the playlists that are nested in the user object
-
-
 class PlaylistContainer extends Component {
 
-    // temporary, just to build the component
-    // rather than getting playlists from the user props, fetch every time. 
     state = {
         loadingsPlaylists: true,
-        playlists: []
+        playlists: [],
+        subscriptions:[]
     }
 
 
@@ -28,15 +21,19 @@ class PlaylistContainer extends Component {
     }
 
     componentDidUpdate(){
+        console.log('playlist updated')
         if (this.props.justUpdated === true){
+            console.log(this.props.justUpdated)
             this.loadPlaylists()
             this.props.refresh()
         }
     }
 
     loadPlaylists = () =>{
+        console.log('refreshing...')
         UserAdapter.getUser(this.props.user.id).then(res => this.setState({
             loadingsPlaylists: false,
+            subscriptions: res.subscriptions,
             playlists: res.playlists.sort((el1, el2) => {
                 if (el1.created_at < el2.created_at)
                     return 1;
@@ -53,7 +50,7 @@ class PlaylistContainer extends Component {
         return userPlaylistArr.map(
             playlist => <Grid.Column key={playlist.id} >
             <Card.Group>
-                <Playlist key={playlist.id} playlist={playlist} /> 
+                <Playlist key={playlist.id} playlist={playlist} subscriptions={this.state.subscriptions} /> 
             </Card.Group>
             </Grid.Column> 
         )

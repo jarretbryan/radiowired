@@ -72,12 +72,9 @@ class Profile extends Component {
             <Fragment>
                 <Container id='profile'>  
                     <Button primary onClick={this.makeNewPlaylist}>Make a new Playlist!</Button>
-                    <Button as='div' labelPosition='right'> 
+                     
                     <Button color='red' onClick={this.prepRedirect}><Icon name='heart' />See Favorites!</Button>
-                    <Label as='a' basic color='red' pointing='left'>
-                        {this.props.user.subscriptions.length}
-                     </Label>
-                    </Button>
+                    
 
                     {this.showAudioPlayer()}
                     {this.showNewPlaylistForm()}

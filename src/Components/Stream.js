@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import {showPlayer, hidePlayer} from '../Actions/playerActions';
-// import { finishPlaylistEdit, refreshPlaylists } from '../Actions/playlistActions';
+import { finishPlaylistEdit, refreshPlaylists } from '../Actions/playlistActions';
 
 import { Divider, Icon, Popup } from 'semantic-ui-react'
 import FavoriteAdapter from '../api/FavoriteAdapter';
@@ -16,7 +16,7 @@ class Stream extends Component {
     }
     
     componentDidMount(){
-        if (!!this.props.user.subscriptions.filter(el => el.id === this.props.stream.id)[0]){
+        if (!!this.props.subscriptions.filter(el => el.id === this.props.stream.id)[0]){
             this.setState({
                 heartStatus: 'heart',
                 message: 'Added to Favorites!'
@@ -30,6 +30,7 @@ class Stream extends Component {
                 heartStatus: 'heart',
                 message: 'Added to Favorites!'
             }))
+            .then(() => {this.props.finishPL()})
         } else {
             let favorite = this.props.user.favorites.filter(el => el.subscription_id === this.props.stream.id)
             let num = favorite[0].id
@@ -94,8 +95,8 @@ const mapDispatchToProps = (dispatch) => {
         showPlayer: (num) => dispatch(showPlayer(num)),
         // // showAudio: () => dispatch(showPlayer()),
         hidePlayer: () => dispatch(hidePlayer()),
-        // finishPL: () => dispatch(finishPlaylistEdit()),
-        // refresh: () => dispatch(refreshPlaylists())
+        finishPL: () => dispatch(finishPlaylistEdit()),
+        refresh: () => dispatch(refreshPlaylists())
     }
 }
 export default connect (mapStateToProps, mapDispatchToProps)(Stream)
