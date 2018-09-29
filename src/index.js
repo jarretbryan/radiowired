@@ -18,8 +18,6 @@ const coreReducer = combineReducers({usersReducer, quizReducer, playerReducer, p
 const store = createStore(coreReducer, composeWithDevTools( applyMiddleware(thunk)))
 
 
-console.log(store.getState())
-
 ReactDOM.render(
     <Provider store={store}>
         <Router>

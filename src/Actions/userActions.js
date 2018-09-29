@@ -10,7 +10,6 @@ export const loginUser = (email, password) => {
             body: JSON.stringify({email, password})
         })
             .then(response => {
-                console.log(response)
                 return response.json()
             })
             .then(response => {
