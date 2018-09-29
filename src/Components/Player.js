@@ -47,6 +47,7 @@ class Player extends Component {
     handleClose = () => this.setState({ modalOpen: false })
 
     // this is kind of a makeshift way of handling the CORS error - it's not airtight and I need to revisit the error handling of the ReactAudioPlayer component
+    // so this error handling is only chrome friendly! how annoying! safari doesn't pick it up at all, and firefox picks it up every time!!
     handleCorsError = (event) => {
         if(event.target.error.message.length < 1){
             console.log('likely a CORS error')
