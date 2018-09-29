@@ -67,7 +67,7 @@ class Player extends Component {
                             <Icon name='eject' /> Close Player
                         </Button>
                         <h4>{this.state.episode_title}</h4>
-                        <a target="_blank" href={this.props.website}>Link to publisher's site:  <Icon name='external alternate' color='blue'></Icon> </a>
+                        <a target="_blank" href={this.props.website}>Publisher's site:  <Icon name='external alternate' color='blue'></Icon> </a>
                 </Menu.Item>             
                 <Menu.Item>
                     <Image src={this.props.thumbnail} centered /> 
