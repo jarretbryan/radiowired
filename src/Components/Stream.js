@@ -65,7 +65,8 @@ class Stream extends Component {
         <Icon bordered inverted color='blue' name="play" size="small" onClick={() => this.props.showPlayer({
             streamId: this.props.stream.ep_id,
             thumbnail: this.props.stream.thumbnail,
-            streamTitle: this.props.stream.title
+            streamTitle: this.props.stream.title,
+            website: this.props.stream.website
         })}  />
         {this.likeButton(this.props)}
         <p dangerouslySetInnerHTML={{__html: this.props.stream.description}}></p>
@@ -76,21 +77,21 @@ class Stream extends Component {
             <Divider />
             <h3>{this.props.stream.title}</h3>
             <img src={this.props.stream.thumbnail} alt={this.props.stream.title} /><br/>
-            <Icon inverted color='red' size="big" name='stop circle' onClick={this.props.hidePlayer} />
-            
-            <p>{this.props.stream.description}</p>
+            {this.likeButton(this.props)}
+            <p dangerouslySetInnerHTML={{ __html: this.props.stream.description }}></p>
         </div>)
     }
 }
 }
 
 
-const mapStateToProps = ({ usersReducer: {user}, playerReducer: { visiblePlayer, streamId, thumbnail, streamTitle }, playlistReducer: {justUpdated}  }) => ({
+const mapStateToProps = ({ usersReducer: {user}, playerReducer: { visiblePlayer, streamId, thumbnail, streamTitle, website }, playlistReducer: {justUpdated}  }) => ({
     user,
     visiblePlayer,
     streamId,
     thumbnail,
     streamTitle,
+    website,
     justUpdated
 })
 
