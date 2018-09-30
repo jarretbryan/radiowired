@@ -9,7 +9,7 @@ import Stream from './Stream';
 import AuthWrapper from '../HOComponents/AuthWrapper';
 import Player from './Player';
 import { refreshPlaylists } from '../Actions/playlistActions';
-import apiLogo from '../gifs/api-transparent background for white background.png';
+import MadeWithLove from './MadeWithLove';
 
 
 
@@ -89,10 +89,7 @@ class FavoritesContainer extends Component {
                 {this.showFavorites()}
                 {this.showAudioPlayer()}
                 <Segment>
-                    <Label as='a' image>
-                        <img src={apiLogo} alt="ListenNotes"/>
-                        <Label.Detail>Made with ♥️ at the Flatiron School</Label.Detail>
-                    </Label>
+                   <MadeWithLove/>
                 </Segment>
             </Container>
         );

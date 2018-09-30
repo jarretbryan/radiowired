@@ -3,9 +3,9 @@ import GenreAdapter from '../api/GenreAdapter';
 import { connect } from 'react-redux';
 import { getGenres } from '../Actions/index'
 import { NavLink, Redirect } from 'react-router-dom'
-import { Card, Divider, Grid, Container, Form, Button, Segment, Label } from 'semantic-ui-react'
+import { Card, Divider, Grid, Container, Form, Button, Segment } from 'semantic-ui-react'
 import AuthWrapper from '../HOComponents/AuthWrapper';
-import apiLogo from '../gifs/api-transparent background for white background.png';
+import MadeWithLove from './MadeWithLove';
 
 
 
@@ -136,10 +136,7 @@ class Quiz extends Component {
                     </Form>
                 </Container>
                 <Segment>
-                    <Label as='a' image>
-                        <img src={apiLogo} alt="ListenNotes" />
-                        <Label.Detail>Made with ♥️ at the Flatiron School</Label.Detail>
-                    </Label>
+                    <MadeWithLove />
                 </Segment>
             </Fragment>
         );

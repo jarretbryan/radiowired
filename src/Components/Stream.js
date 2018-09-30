@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import {showPlayer, hidePlayer} from '../Actions/playerActions';
 import { finishPlaylistEdit, refreshPlaylists } from '../Actions/playlistActions';
-
-import { Divider, Icon, Popup } from 'semantic-ui-react'
+import {Icon, Popup } from 'semantic-ui-react'
 import FavoriteAdapter from '../api/FavoriteAdapter';
 
 // i wrote this as a functional component, but may have to refactor to class based

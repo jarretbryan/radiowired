@@ -5,10 +5,8 @@ import Player from './Player';
 import { Redirect } from 'react-router-dom'
 import PlaylistForm from './PlaylistForm';
 import AuthWrapper from '../HOComponents/AuthWrapper';
-import { Container, Divider, Button, Icon, Label, Segment } from 'semantic-ui-react'
-import apiLogo from '../gifs/api-transparent background for white background.png';
-
-
+import { Container, Divider, Button, Icon, Segment } from 'semantic-ui-react'
+import MadeWithLove from './MadeWithLove';
 
 
 class Profile extends Component {
@@ -84,10 +82,7 @@ class Profile extends Component {
                     <PlaylistContainer />         
                 </Container>
                     <Segment>
-                        <Label as='a' image>
-                            <img src={apiLogo} alt="ListenNotes" />
-                            <Label.Detail>Made with ♥️ at the Flatiron School</Label.Detail>
-                        </Label>
+                        <MadeWithLove />
                     </Segment>
             </Fragment>
              );

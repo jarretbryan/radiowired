@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import StreamAdapter from '../api/StreamAdapter';
 import ReactAudioPlayer from 'react-audio-player';
