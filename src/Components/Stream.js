@@ -58,30 +58,28 @@ class Stream extends Component {
     }
 
     render(){
-    if (this.props.visiblePlayer === false){
-    return (<div>
-        <h4>{this.props.stream.title}</h4>
-        <img src={this.props.stream.thumbnail} alt={this.props.stream.title} /><br/>
-        <Icon bordered inverted color='blue' name="play" size="small" onClick={() => this.props.showPlayer({
-            streamId: this.props.stream.ep_id,
-            thumbnail: this.props.stream.thumbnail,
-            streamTitle: this.props.stream.title,
-            website: this.props.stream.website
-        })}  />
-        {this.likeButton(this.props)}
-        <p dangerouslySetInnerHTML={{__html: this.props.stream.description}}></p>
-    </div>)
-    } else {
+        if (this.props.visiblePlayer === false){
         return (<div>
-            
-            <Divider />
-            <h3>{this.props.stream.title}</h3>
+            <h4>{this.props.stream.title}</h4>
             <img src={this.props.stream.thumbnail} alt={this.props.stream.title} /><br/>
+            <Icon bordered inverted color='blue' name="play" size="small" onClick={() => this.props.showPlayer({
+                streamId: this.props.stream.ep_id,
+                thumbnail: this.props.stream.thumbnail,
+                streamTitle: this.props.stream.title,
+                website: this.props.stream.website
+            })}  />
             {this.likeButton(this.props)}
-            <p dangerouslySetInnerHTML={{ __html: this.props.stream.description }}></p>
+            <p dangerouslySetInnerHTML={{__html: this.props.stream.description}}></p>
         </div>)
+        } else {
+            return (<div>
+                <h4>{this.props.stream.title}</h4>
+                <img src={this.props.stream.thumbnail} alt={this.props.stream.title} /><br/>
+                {this.likeButton(this.props)}
+                <p dangerouslySetInnerHTML={{ __html: this.props.stream.description }}></p>
+            </div>)
+        }
     }
-}
 }
 
 
