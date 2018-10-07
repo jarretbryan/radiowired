@@ -73,12 +73,25 @@ class PlaylistContainer extends Component {
                 </Fragment>)
         }
     }
+
+    emptyPLaylists = () => {
+        if (this.state.playlists.length === 0){
+            return(
+                <Fragment>
+                    <Card fluid color='green' header='Make a new playlist to get started!' /><br/>
+                </Fragment>
+            )
+        }
+    }
  
     render() {
         return (
-            <Grid columns={3} divided>
-                {this.showPlaylists()}
-            </Grid>
+            <Fragment>
+                {this.emptyPLaylists()}
+                <Grid columns={3} divided>
+                    {this.showPlaylists()}
+                </Grid>
+            </Fragment>
             
         );
     }
